@@ -1,6 +1,6 @@
 import './style.css'
 import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
+import viteLogo from 'C:\Users\Pc\Desktop\Khabeer-website\src\assets\images\hero\Frame 90 (1).svg'
 import { setupCounter } from './counter.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
