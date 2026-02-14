@@ -1,0 +1,655 @@
+.ctaWrapper {
+  padding: 40px 80px;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.cta {
+  position: relative;
+  border: 1px solid rgba(0, 184, 219, 0.3);
+  border-radius: 50px;
+  padding: 80px 40px;
+  background: linear-gradient(92.2485135749025deg, rgba(0, 184, 219, 0.3) 0.51093%, rgba(223, 250, 255, 0.3) 99.489%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0;
+  min-height: 345px;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.rightContent {
+  z-index: 2;
+  position: relative;
+  margin-left: auto;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  color: #0077b6;
+  text-align: right;
+}
+
+/* LTR adjustments for English */
+.lang-en .textContent {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+  text-align: right;
+  z-index: 2;
+  position: relative;
+}
+
+/* LTR adjustments for English */
+.lang-en .content {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.title {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: normal;
+  color: #0077b6;
+  margin: 0;
+  white-space: pre-wrap;
+  position: relative;
+  width: 555px;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.subtitle {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 0;
+  color: #0077b6;
+  margin: 0;
+  letter-spacing: -0.4492px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
+  position: relative;
+  width: 555px;
+  max-width: 100%;
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.subtitle p {
+  line-height: 28px;
+  margin: 0;
+}
+
+.button {
+  background: #f7941d;
+  color: #ffffff;
+  border: none;
+  border-radius: 16777200px;
+  padding: 14px 26px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.3125px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+  height: fit-content;
+  white-space: nowrap;
+  align-self: flex-end;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+.buttonIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.buttonIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transform: rotate(180deg) scaleY(-1);
+}
+
+/* Flip icon for LTR - only when English is active */
+.lang-en .buttonIconContainer {
+  transform: none;
+}
+
+.buttonIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: block;
+  position: relative;
+}
+
+.phones {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.phone1 {
+  position: absolute;
+  left: 44.43px;
+  top: 26.6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 680.08px;
+  width: 379.62px;
+  opacity: 0;
+  transform: translateY(80px) scale(0.9) rotate(-6deg);
+  will-change: transform, opacity;
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.phone1.animate {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(-6deg);
+}
+
+.phone1 > div {
+  transform: rotate(-6deg);
+}
+
+.phone2 {
+  position: absolute;
+  left: 209px;
+  top: 14.94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 711.33px;
+  width: 477.49px;
+  opacity: 0;
+  transform: translateY(80px) scale(0.9) rotate(15.67deg);
+  will-change: transform, opacity;
+  transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.phone2.animate {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(15.67deg);
+}
+
+.phone2 > div {
+  transform: rotate(15.67deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phone1,
+  .phone2 {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .phone1.animate,
+  .phone2.animate {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.phoneFrame {
+  background: #000;
+  border-radius: 48px;
+  padding: 11.997px;
+  box-shadow: 0px 25px 50px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 313.298px;
+  height: 650.897px;
+  position: relative;
+}
+
+.phone2 .phoneFrame {
+  background: #000;
+}
+
+.phoneScreen {
+  background: #f7f7f7;
+  border-radius: 40px;
+  overflow: hidden;
+  width: 100%;
+  height: 622.82px;
+  position: relative;
+}
+
+.phone2 .phoneScreen {
+  background: #0077b6;
+}
+
+.phoneScreenImage {
+  position: absolute;
+  height: 811.997px;
+  left: 0;
+  top: 0;
+  width: 287.564px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.phoneScreenImage img {
+  position: absolute;
+  height: 100%;
+  max-width: none;
+  display: block;
+}
+
+.phone1 .phoneScreenImage {
+  width: 287.564px;
+}
+
+.phone1 .phoneScreenImage img {
+  width: 108.07%;
+  left: -4.48%;
+  top: -48.58%;
+}
+
+.phone2 .phoneScreenImage {
+  width: 287.564px;
+}
+
+.phone2 .phoneScreenImage img {
+  width: 108.07%;
+  left: -1.97%;
+  top: -0.18%;
+}
+
+.phoneNotch {
+  position: absolute;
+  top: -2.62px;
+  left: calc(50% + 5.9px);
+  transform: translateX(-50%);
+  width: 160px;
+  height: 27.995px;
+  background: #000;
+  border-radius: 0 0 24px 24px;
+  z-index: 2;
+}
+
+.phone2 .phoneNotch {
+  background: #000;
+}
+
+.pattern {
+  position: absolute;
+  top: calc(50% + 0.94px);
+  left: calc(50% + 150px);
+  transform: translate(-50%, -50%);
+  width: 3198px;
+  height: 1799px;
+  max-width: 200%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  clip-path: inset(0);
+}
+
+.pattern img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.1;
+}
+
+/* Large Tablets & Small Desktops (1024px - 1440px) */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .ctaWrapper {
+    padding: clamp(32px, 2.5vw, 40px) clamp(50px, 6.9vw, 80px);
+  }
+
+  .cta {
+    padding: clamp(60px, 4.7vw, 80px) clamp(32px, 2.5vw, 40px);
+    min-height: clamp(300px, 23.4vw, 345px);
+    max-width: clamp(1100px, 86vw, 1280px);
+  }
+
+  .title {
+    font-size: clamp(36px, 2.8vw, 40px);
+    width: clamp(500px, 39vw, 555px);
+    max-width: clamp(500px, 39vw, 555px);
+  }
+
+  .subtitle {
+    font-size: clamp(18px, 1.4vw, 20px);
+    white-space: normal;
+    width: clamp(500px, 39vw, 555px);
+    max-width: clamp(500px, 39vw, 555px);
+  }
+
+  .subtitle p {
+    line-height: clamp(25px, 1.95vw, 28px);
+  }
+
+  .button {
+    padding: clamp(13px, 1.02vw, 14px) clamp(22px, 1.7vw, 26px);
+    font-size: clamp(15px, 1.17vw, 16px);
+  }
+
+  .phone1 {
+    left: clamp(35px, 2.7vw, 44.43px);
+    top: clamp(20px, 1.56vw, 26.6px);
+    width: clamp(300px, 23.4vw, 379.62px);
+    height: clamp(536px, 41.9vw, 680.08px);
+  }
+
+  .phone2 {
+    left: clamp(165px, 12.9vw, 209px);
+    top: clamp(11px, 0.86vw, 14.94px);
+    width: clamp(375px, 29.3vw, 477.49px);
+    height: clamp(560px, 43.8vw, 711.33px);
+  }
+
+  .phoneFrame {
+    width: clamp(247px, 19.3vw, 313.298px);
+    height: clamp(512px, 40vw, 650.897px);
+    padding: clamp(9px, 0.7vw, 11.997px);
+  }
+
+  .phoneScreen {
+    height: clamp(490px, 38.3vw, 622.82px);
+  }
+}
+
+/* Tablets (768px - 1024px) - iPad & Similar */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ctaWrapper {
+    padding: clamp(28px, 3.6vw, 36px) clamp(28px, 3.6vw, 40px);
+  }
+
+  .cta {
+    padding: clamp(48px, 6.25vw, 56px) clamp(28px, 3.6vw, 32px);
+    min-height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(32px, 4.2vw, 40px);
+    border-radius: clamp(36px, 4.7vw, 42px);
+  }
+
+  .rightContent {
+    width: 100%;
+    margin-left: 0;
+    z-index: 2;
+  }
+
+  .textContent {
+    align-items: center;
+    text-align: center;
+    gap: clamp(20px, 2.6vw, 24px);
+    width: 100%;
+  }
+
+  .lang-en .textContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(32px, 4.2vw, 38px);
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: clamp(17px, 2.21vw, 19px);
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .subtitle p {
+    line-height: clamp(24px, 3.1vw, 26px);
+  }
+
+  .button {
+    align-self: center;
+    margin-left: 0;
+    padding: clamp(14px, 1.82vw, 16px) clamp(24px, 3.1vw, 28px);
+    font-size: clamp(15px, 1.95vw, 17px);
+    min-height: 48px;
+  }
+
+  /* إخفاء صور الجوالات على التابلت */
+  .phones {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .phone1,
+  .phone2 {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .phoneFrame,
+  .phoneScreen,
+  .phoneScreenImage,
+  .phoneNotch {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .pattern {
+    width: clamp(1200px, 156vw, 1800px);
+    height: clamp(675px, 88vw, 1013px);
+    opacity: 0.05;
+  }
+}
+
+/* Mobile - stack phones with better layout */
+@media (max-width: 768px) {
+  .ctaWrapper {
+    padding: clamp(24px, 4.7vw, 32px) clamp(16px, 3.1vw, 20px);
+  }
+
+  .cta {
+    padding: clamp(40px, 7.8vw, 48px) clamp(20px, 3.9vw, 24px);
+    min-height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(32px, 6.25vw, 40px);
+    border-radius: clamp(32px, 6.25vw, 40px);
+  }
+
+  .rightContent {
+    width: 100%;
+    margin-left: 0;
+    z-index: 2;
+  }
+
+  .textContent {
+    align-items: center;
+    text-align: center;
+    gap: clamp(18px, 3.5vw, 22px);
+    width: 100%;
+  }
+
+  .lang-en .textContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(24px, 4.7vw, 30px);
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: clamp(16px, 3.1vw, 20px);
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .subtitle p {
+    line-height: 1.6;
+  }
+
+  .button {
+    align-self: center;
+    margin-left: 0;
+    padding: clamp(14px, 2.7vw, 16px) clamp(24px, 4.7vw, 28px);
+    font-size: clamp(15px, 2.9vw, 17px);
+    min-height: 48px; /* Touch-friendly */
+  }
+
+  /* إخفاء صور الجوالات على الجوال */
+  .phones {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .phone1,
+  .phone2 {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .phoneFrame,
+  .phoneScreen,
+  .phoneScreenImage,
+  .phoneNotch {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .pattern {
+    width: clamp(1000px, 195vw, 1500px);
+    height: clamp(562px, 110vw, 844px);
+    opacity: 0.05;
+  }
+}
+
+/* الأجهزة الصغيرة (480px) */
+@media (max-width: 480px) {
+  .ctaWrapper {
+    padding: clamp(20px, 4.2vw, 24px) clamp(12px, 2.5vw, 16px);
+  }
+
+  .cta {
+    padding: clamp(32px, 6.7vw, 40px) clamp(16px, 3.3vw, 20px);
+    gap: clamp(28px, 5.8vw, 32px);
+  }
+
+  .title {
+    font-size: clamp(22px, 4.6vw, 28px);
+  }
+
+  .subtitle {
+    font-size: clamp(15px, 3.1vw, 18px);
+  }
+
+  .phones {
+    gap: clamp(12px, 2.5vw, 16px);
+  }
+
+  .phone1 {
+    width: clamp(140px, 29.2vw, 180px);
+    height: clamp(252px, 52.5vw, 324px);
+  }
+
+  .phone2 {
+    width: clamp(160px, 33.3vw, 200px);
+    height: clamp(288px, 60vw, 360px);
+  }
+}
+
+/* الأجهزة الصغيرة جداً (360px) */
+@media (max-width: 360px) {
+  .cta {
+    padding: clamp(28px, 7.8vw, 32px) clamp(14px, 3.9vw, 18px);
+    gap: clamp(24px, 6.7vw, 28px);
+  }
+
+  .title {
+    font-size: clamp(20px, 5.6vw, 24px);
+  }
+
+  .subtitle {
+    font-size: clamp(14px, 3.9vw, 16px);
+  }
+
+  .phones {
+    flex-direction: column;
+    gap: clamp(12px, 3.3vw, 16px);
+  }
+
+  .phone1,
+  .phone2 {
+    width: clamp(150px, 41.7vw, 180px);
+    height: clamp(270px, 75vw, 324px);
+  }
+}
