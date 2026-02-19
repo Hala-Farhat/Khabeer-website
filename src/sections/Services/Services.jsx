@@ -19,9 +19,9 @@ function Services() {
       description: t.service1Desc,
       image: acImage,
       borderColor: '#f6339a',
-      gradient: 'linear-gradient(103.99080091333762deg, rgba(246, 51, 154, 0.1) 9.4707%, rgba(173, 70, 255, 0.1) 90.529%)',
+      gradient: 'linear-gradient(107.24907464204543deg, rgba(246, 51, 154, 0.1) 9.4707%, rgba(173, 70, 255, 0.1) 90.529%)',
       contentGradient: 'linear-gradient(143.04905109339757deg, rgba(246, 51, 154, 0.1) 9.4707%, rgba(173, 70, 255, 0.1) 90.529%)',
-      shadowColor: 'rgba(0, 184, 219, 0.2)'
+      shadow: '0px 0px 30px 0px rgba(0, 184, 219, 0.2)'
     },
     {
       id: 2,
@@ -29,9 +29,9 @@ function Services() {
       description: t.service2Desc,
       image: electricityImage,
       borderColor: '#d7db00',
-      gradient: 'linear-gradient(110.13209657337484deg, rgba(215, 219, 0, 0.1) 11.232%, rgba(244, 255, 43, 0.1) 88.768%)',
+      gradient: 'linear-gradient(114.5519741308622deg, rgba(215, 219, 0, 0.1) 11.232%, rgba(244, 255, 43, 0.1) 88.768%)',
       contentGradient: 'linear-gradient(152.92115693324047deg, rgba(219, 215, 0, 0.1) 11.232%, rgba(244, 255, 43, 0.1) 88.768%)',
-      shadowColor: 'rgba(215, 219, 0, 0.2)'
+      shadow: '0px 0px 30px 0px rgba(215, 219, 0, 0.2)'
     },
     {
       id: 3,
@@ -39,9 +39,9 @@ function Services() {
       description: t.service3Desc,
       image: smartHomeImage,
       borderColor: '#00b8db',
-      gradient: 'linear-gradient(110.13429888800938deg, rgba(0, 184, 219, 0.1) 11.232%, rgba(43, 127, 255, 0.1) 88.768%)',
+      gradient: 'linear-gradient(114.5519741308622deg, rgba(0, 184, 219, 0.1) 11.232%, rgba(43, 127, 255, 0.1) 88.768%)',
       contentGradient: 'linear-gradient(152.92115693324047deg, rgba(0, 184, 219, 0.1) 11.232%, rgba(43, 127, 255, 0.1) 88.768%)',
-      shadowColor: 'rgba(236, 72, 153, 0.2)'
+      shadow: '0px 0px 30px 0px rgba(236, 72, 153, 0.2)'
     },
     {
       id: 4,
@@ -49,11 +49,14 @@ function Services() {
       description: t.service4Desc,
       image: networkImage,
       borderColor: '#ff6900',
-      gradient: 'linear-gradient(138.94351272436435deg, rgba(255, 105, 0, 0.1) 0%, rgba(240, 177, 0, 0.1) 100%)',
+      gradient: 'linear-gradient(145.04473534831624deg, rgba(255, 105, 0, 0.1) 0%, rgba(240, 177, 0, 0.1) 100%)',
       contentGradient: 'linear-gradient(170.7273982227997deg, rgba(255, 105, 0, 0.1) 0%, rgba(240, 177, 0, 0.1) 100%)',
-      shadowColor: 'rgba(255, 105, 0, 0.2)'
+      shadow: '0px 0px 30px 0px rgba(255, 105, 0, 0.2)'
     }
   ]
+
+  // Reorder services to match Figma layout: AC (top-left), Electricity (top-right), Networks (bottom-left), Smart Systems (bottom-right)
+  const orderedServices = [services[0], services[1], services[3], services[2]]
 
   return (
     <section className={styles.services} id="services">
@@ -66,7 +69,7 @@ function Services() {
         <p className={styles.subtitle}>{t.servicesSubtitle}</p>
       </div>
       <div className={styles.grid}>
-        {services.map((service, index) => {
+        {orderedServices.map((service, index) => {
           const [cardRef, isIntersecting] = useIntersectionObserver({
             threshold: 0.15,
             rootMargin: '0px 0px -100px 0px',
@@ -81,7 +84,7 @@ function Services() {
               style={{
                 borderColor: service.borderColor,
                 background: service.gradient,
-                boxShadow: `0px 0px 30px 0px ${service.shadowColor}`,
+                boxShadow: service.shadow,
                 transitionDelay: `${index * 100}ms`
               }}
             >

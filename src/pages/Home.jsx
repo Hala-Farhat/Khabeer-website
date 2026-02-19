@@ -16,7 +16,6 @@ function Home() {
     <div dir={language === 'ar' ? 'rtl' : 'ltr'} className="home-container">
       <NavbarSection />
       <Hero />
-      <div className="hero-shadow"></div>
       <AboutApp />
       <Services />
       <WhyUs />
