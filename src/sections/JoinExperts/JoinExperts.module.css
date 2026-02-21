@@ -101,9 +101,9 @@
 }
 
 .iconContainer {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,8 +117,8 @@
 }
 
 .icon {
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   display: block;
   max-width: none;
@@ -406,13 +406,13 @@
   }
 
   .iconContainer {
-    width: clamp(46px, 6vw, 50px);
-    height: clamp(46px, 6vw, 50px);
+    width: clamp(56px, 7.3vw, 64px);
+    height: clamp(56px, 7.3vw, 64px);
   }
 
   .icon {
-    width: clamp(26px, 3.4vw, 28px);
-    height: clamp(26px, 3.4vw, 28px);
+    width: clamp(32px, 4.2vw, 36px);
+    height: clamp(32px, 4.2vw, 36px);
   }
 }
 
@@ -505,13 +505,13 @@
   }
 
   .iconContainer {
-    width: clamp(44px, 8.6vw, 52px);
-    height: clamp(44px, 8.6vw, 52px);
+    width: clamp(56px, 11vw, 64px);
+    height: clamp(56px, 11vw, 64px);
   }
 
   .icon {
-    width: clamp(24px, 4.7vw, 28px);
-    height: clamp(24px, 4.7vw, 28px);
+    width: clamp(32px, 6.25vw, 36px);
+    height: clamp(32px, 6.25vw, 36px);
   }
 }
 

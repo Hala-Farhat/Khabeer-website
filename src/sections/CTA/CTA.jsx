@@ -1,20 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
 import styles from './CTA.module.css'
-import expert1 from '../../assets/images/Experts/Container (4).png'
-import expert2 from '../../assets/images/Experts/Container (5).png'
+// Arabic phone images
+import phoneAr1 from '../../assets/images/Experts/Container (4).png'
+import phoneAr2 from '../../assets/images/Experts/Container (5).png'
+// English phone images
+import phoneEn1 from '../../assets/images/Experts/2 (3).png'
+import phoneEn2 from '../../assets/images/Experts/image 5.png'
 import patternImage from '../../assets/images/hero/Globe.png'
+import JoinExpertModal from '../../components/JoinExpertForm/JoinExpertModal'
 
-// Figma asset URLs (valid for 7 days)
-const imgProfessionalSplash1 = "https://www.figma.com/api/mcp/asset/36645af1-b162-4fa7-83a5-2ae7d9855640";
-const imgProfessionalSplash2 = "https://www.figma.com/api/mcp/asset/b05d9325-1374-475e-ad08-afee5b09bb75";
-const imgIcon = "https://www.figma.com/api/mcp/asset/60308d3b-8da5-4200-834b-9908e2903c75";
+// Arrow icon as inline SVG component
+const ArrowIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 function CTA() {
   const { language } = useLanguage()
   const t = translations[language]
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  
+  // Select phone images based on language
+  const phone1Img = language === 'en' ? phoneEn1 : phoneAr1
+  const phone2Img = language === 'en' ? phoneEn2 : phoneAr2
   
   const [phone1Ref, phone1Visible] = useIntersectionObserver({
     threshold: 0.15,
@@ -37,13 +49,13 @@ function CTA() {
             <div className={styles.subtitle} data-node-id="4:1137">
               <p>{t.ctaSubtitle}</p>
             </div>
-            <button className={styles.button} data-node-id="4:1138">
+            <button className={styles.button} data-node-id="4:1138" onClick={() => setIsModalOpen(true)}>
+              <span data-node-id="4:1142">{t.ctaButton}</span>
               <div className={styles.buttonIconWrapper}>
                 <div className={styles.buttonIconContainer}>
-                  <img src={imgIcon} alt="" className={styles.buttonIcon} data-node-id="4:1139" />
+                  <ArrowIcon />
                 </div>
               </div>
-              <span data-node-id="4:1142">{t.ctaButton}</span>
             </button>
           </div>
         </div>
@@ -55,7 +67,7 @@ function CTA() {
             <div className={styles.phoneFrame} data-node-id="4:1144">
               <div className={styles.phoneScreen} data-node-id="4:1145">
                 <div className={styles.phoneScreenImage} data-node-id="4:1146">
-                  <img src={imgProfessionalSplash1} alt="Expert App Screen 1" />
+                  <img src={phone1Img} alt="Expert App Screen 1" />
                 </div>
                 <div className={styles.phoneNotch} data-node-id="4:1147"></div>
               </div>
@@ -65,7 +77,7 @@ function CTA() {
             <div className={styles.phoneFrame} data-node-id="4:1148">
               <div className={styles.phoneScreen} data-node-id="4:1149">
                 <div className={styles.phoneScreenImage} data-node-id="4:1150">
-                  <img src={imgProfessionalSplash2} alt="Expert App Screen 2" />
+                  <img src={phone2Img} alt="Expert App Screen 2" />
                 </div>
                 <div className={styles.phoneNotch} data-node-id="4:1151"></div>
               </div>
@@ -73,6 +85,11 @@ function CTA() {
           </div>
         </div>
       </div>
+      
+      <JoinExpertModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   )
 }

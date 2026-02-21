@@ -3,7 +3,9 @@ import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
 import styles from './WhyUs.module.css'
-import phoneMockup from '../../assets/images/WhyUs/iPhone 12 Pro 6.1_ Mockup.png'
+// Phone mockup images for different languages
+import phoneMockupAr from '../../assets/images/WhyUs/iPhone 12 Pro 6.1_ Mockup.png'
+import phoneMockupEn from '../../assets/images/WhyUs/3.png'
 import icon1 from '../../assets/images/WhyUs/Container.png'
 import icon2 from '../../assets/images/WhyUs/Container (1).png'
 import icon3 from '../../assets/images/WhyUs/Container (2).png'
@@ -32,6 +34,9 @@ function PhoneWithAnimation({ phoneMockup }) {
 function WhyUs() {
   const { language } = useLanguage()
   const t = translations[language]
+  
+  // Select phone mockup based on language
+  const phoneMockup = language === 'en' ? phoneMockupEn : phoneMockupAr
   
   const features = [
     {
