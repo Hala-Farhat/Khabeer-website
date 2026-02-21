@@ -498,38 +498,41 @@
   }
 }
 
-/* Mobile - Show only center phone, hide others */
+/* Mobile - Hide all phones, show only text content */
 @media (max-width: 768px) {
   .hero {
-    padding: clamp(24px, 5vw, 32px) clamp(16px, 3.3vw, 20px) clamp(32px, 6.7vw, 48px);
-    gap: clamp(32px, 6.7vw, 40px);
+    padding: clamp(80px, 16vw, 100px) clamp(16px, 3.3vw, 20px) clamp(40px, 8vw, 60px);
+    gap: clamp(20px, 4vw, 28px);
     min-height: auto;
     flex-direction: column;
+    justify-content: center;
   }
 
-  /* تحسين النص - يظهر فوق الجوال */
   .content {
-    order: 1;
     width: 100%;
-    margin-bottom: clamp(24px, 5vw, 32px);
+    padding: 0;
+  }
+
+  .contentInner {
+    gap: clamp(16px, 3.3vw, 20px);
   }
 
   .textContent {
-    gap: clamp(16px, 3.3vw, 20px);
+    gap: clamp(14px, 2.9vw, 18px);
     padding: 0;
     width: 100%;
   }
 
   .title {
-    font-size: clamp(28px, 5.8vw, 36px);
-    line-height: 1.3;
+    font-size: clamp(26px, 5.4vw, 34px);
+    line-height: 1.35;
     padding: 0;
     width: 100%;
   }
 
   .subtitle {
-    font-size: clamp(20px, 4.2vw, 24px);
-    line-height: 1.4;
+    font-size: clamp(18px, 3.75vw, 22px);
+    line-height: 1.5;
     padding: 0;
     width: 100%;
   }
@@ -537,137 +540,89 @@
   .notice {
     padding: 0;
     width: 100%;
+    margin-top: clamp(8px, 1.6vw, 12px);
   }
 
   .notice span {
-    font-size: clamp(14px, 2.9vw, 16px);
+    font-size: clamp(13px, 2.7vw, 15px);
     line-height: 1.5;
   }
 
-  /* الجوالات - إظهار الجوال الأوسط فقط */
-  .phones {
-    order: 2;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    position: relative;
+  .badge {
+    padding: 6px 10px;
+    gap: 6px;
   }
 
-  /* إخفاء الجوالات الجانبية على الجوال */
-  .phoneLeft,
-  .phoneRight {
+  .badge span {
+    font-size: 13px;
+    padding: 0 6px;
+  }
+
+  .badgeIcon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* إخفاء جميع الجوالات نهائياً على الموبايل */
+  .phones {
     display: none !important;
     visibility: hidden;
     opacity: 0;
     width: 0;
     height: 0;
     overflow: hidden;
+    position: absolute;
+    pointer-events: none;
   }
 
-  /* الجوال الأوسط - كبير ومركزي */
+  .phoneLeft,
+  .phoneRight,
   .phoneCenter {
-    position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    transform: none !important;
-    margin: 0 auto;
-    width: clamp(240px, 50vw, 320px);
-    height: clamp(488px, 101.7vw, 650px);
-    opacity: 1;
-    order: 0;
-  }
-
-  .phoneCenter.animate {
-    transform: none !important;
-    opacity: 1;
-  }
-
-  .phoneCenter .phoneFrame {
-    padding: clamp(14px, 2.9vw, 18px);
-    width: 100%;
-    height: 100%;
-  }
-
-  .phoneCenter .phoneFrame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 40px;
-  }
-
-  .phoneCenter .phoneNotch {
-    width: clamp(120px, 25vw, 160px);
-    height: clamp(20px, 4.2vw, 26px);
-    left: 50%;
-    transform: translateX(-50%);
-    top: clamp(14px, 2.9vw, 18px);
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
   }
 
   /* تحسين الـ Pattern على الجوال */
   .pattern {
-    width: clamp(1000px, 208vw, 1500px);
-    height: clamp(562px, 117vw, 844px);
-    opacity: 0.03;
+    width: clamp(800px, 166vw, 1200px);
+    height: clamp(450px, 94vw, 675px);
+    opacity: 0.04;
   }
 }
 
 /* الأجهزة الصغيرة (480px) */
 @media (max-width: 480px) {
   .hero {
-    padding: clamp(20px, 4.2vw, 24px) clamp(12px, 2.5vw, 16px) clamp(28px, 5.8vw, 32px);
-    gap: clamp(28px, 5.8vw, 32px);
+    padding: clamp(70px, 14.6vw, 90px) clamp(12px, 2.5vw, 16px) clamp(32px, 6.7vw, 48px);
+    gap: clamp(16px, 3.3vw, 20px);
   }
 
   .title {
-    font-size: clamp(26px, 5.4vw, 32px);
+    font-size: clamp(24px, 5vw, 30px);
   }
 
   .subtitle {
-    font-size: clamp(18px, 3.75vw, 22px);
+    font-size: clamp(16px, 3.3vw, 20px);
   }
 
-  .phoneCenter {
-    width: clamp(220px, 45.8vw, 280px);
-    height: clamp(448px, 93.3vw, 570px);
-  }
-
-  /* تأكيد إخفاء الجوالات الجانبية */
-  .phoneLeft,
-  .phoneRight {
-    display: none !important;
+  .notice span {
+    font-size: clamp(12px, 2.5vw, 14px);
   }
 }
 
 /* الأجهزة الصغيرة جداً (360px) */
 @media (max-width: 360px) {
   .hero {
-    padding: clamp(18px, 5vw, 20px) clamp(10px, 2.8vw, 14px) clamp(24px, 6.7vw, 28px);
-    gap: clamp(24px, 6.7vw, 28px);
+    padding: clamp(60px, 16.7vw, 80px) clamp(10px, 2.8vw, 14px) clamp(28px, 7.8vw, 40px);
+    gap: clamp(14px, 3.9vw, 18px);
   }
 
   .title {
-    font-size: clamp(24px, 6.7vw, 28px);
+    font-size: clamp(22px, 6.1vw, 26px);
   }
 
   .subtitle {
-    font-size: clamp(16px, 4.4vw, 20px);
-  }
-
-  .phoneCenter {
-    width: clamp(200px, 55.6vw, 240px);
-    height: clamp(407px, 113vw, 488px);
-  }
-
-  /* تأكيد إخفاء الجوالات الجانبية */
-  .phoneLeft,
-  .phoneRight {
-    display: none !important;
+    font-size: clamp(14px, 3.9vw, 18px);
   }
 }

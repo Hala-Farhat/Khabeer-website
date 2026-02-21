@@ -382,17 +382,17 @@
   }
 }
 
-/* Mobile - stack columns with better spacing */
+/* Mobile - clean stacked footer */
 @media (max-width: 768px) {
   .footer {
-    padding: clamp(32px, 6.25vw, 40px) clamp(16px, 3.1vw, 20px) clamp(24px, 4.7vw, 32px);
+    padding: clamp(32px, 6.25vw, 44px) clamp(16px, 3.1vw, 20px) clamp(24px, 4.7vw, 32px);
     gap: clamp(24px, 4.7vw, 32px);
   }
 
   .content {
     flex-direction: column;
-    gap: clamp(28px, 5.5vw, 36px);
-    align-items: flex-start;
+    gap: clamp(24px, 4.7vw, 32px);
+    align-items: center;
     width: 100%;
   }
 
@@ -401,79 +401,98 @@
   .contact {
     width: 100%;
     max-width: 100%;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .about {
-    gap: clamp(20px, 3.9vw, 24px);
+    gap: clamp(16px, 3.1vw, 20px);
   }
 
   .logo {
-    width: clamp(100px, 19.5vw, 120px);
-    height: clamp(40px, 7.8vw, 48px);
+    width: clamp(90px, 17.6vw, 110px);
+    height: clamp(36px, 7vw, 44px);
   }
 
   .description {
-    font-size: clamp(16px, 3.1vw, 20px);
+    font-size: clamp(14px, 2.7vw, 16px);
     line-height: 1.6;
-    text-align: right;
+    text-align: center;
     width: 100%;
   }
 
   :global(.lang-en) .description {
-    text-align: left;
+    text-align: center;
   }
 
   .sectionTitle {
-    font-size: clamp(18px, 3.5vw, 22px);
+    font-size: clamp(16px, 3.1vw, 18px);
     margin-bottom: clamp(4px, 0.78vw, 8px);
+    text-align: center;
+  }
+
+  :global(.lang-en) .sectionTitle {
+    text-align: center;
   }
 
   .links {
-    gap: clamp(16px, 3.1vw, 20px);
-  }
-
-  .linksList {
-    gap: clamp(14px, 2.7vw, 18px);
-  }
-
-  .linksList li {
-    font-size: clamp(16px, 3.1vw, 20px);
-    line-height: 1.5;
-    min-height: 44px; /* Touch-friendly */
-    display: flex;
-    align-items: center;
-  }
-
-  .contact {
-    gap: clamp(16px, 3.1vw, 20px);
-  }
-
-  .contactInfo {
-    gap: clamp(18px, 3.5vw, 22px);
-  }
-
-  .email {
-    font-size: clamp(16px, 3.1vw, 20px);
-    line-height: 1.5;
-    min-height: 44px; /* Touch-friendly */
-  }
-
-  .social {
     gap: clamp(12px, 2.3vw, 16px);
   }
 
+  .linksList {
+    gap: clamp(10px, 2vw, 14px);
+    align-items: center;
+  }
+
+  .linksList li {
+    font-size: clamp(14px, 2.7vw, 16px);
+    line-height: 1.5;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(.lang-en) .linksList li {
+    text-align: center;
+  }
+
+  .contact {
+    gap: clamp(12px, 2.3vw, 16px);
+  }
+
+  .contactInfo {
+    gap: clamp(14px, 2.7vw, 18px);
+    align-items: center;
+  }
+
+  .email {
+    font-size: clamp(14px, 2.7vw, 16px);
+    line-height: 1.5;
+    min-height: 40px;
+    justify-content: center;
+  }
+
+  :global(.lang-en) .email {
+    justify-content: center;
+  }
+
+  .social {
+    gap: clamp(10px, 2vw, 14px);
+    justify-content: center;
+  }
+
   .socialIcon {
-    width: clamp(44px, 8.6vw, 50px);
-    height: clamp(44px, 8.6vw, 50px);
-    min-width: 44px; /* Touch-friendly */
-    min-height: 44px;
+    width: clamp(42px, 8.2vw, 48px);
+    height: clamp(42px, 8.2vw, 48px);
+    min-width: 42px;
+    min-height: 42px;
   }
 
   .socialIcon img,
   .socialIcon svg {
-    width: clamp(28px, 5.5vw, 32px);
-    height: clamp(28px, 5.5vw, 32px);
+    width: clamp(24px, 4.7vw, 28px);
+    height: clamp(24px, 4.7vw, 28px);
   }
 
   .divider {
@@ -482,15 +501,15 @@
 
   .bottom {
     flex-direction: column;
-    gap: clamp(16px, 3.1vw, 20px);
+    gap: clamp(12px, 2.3vw, 16px);
     text-align: center;
-    font-size: clamp(12px, 2.3vw, 14px);
+    font-size: clamp(11px, 2.1vw, 13px);
     align-items: center;
   }
 
   .legal {
     flex-direction: row;
-    gap: clamp(16px, 3.1vw, 20px);
+    gap: clamp(12px, 2.3vw, 16px);
     justify-content: center;
   }
 
@@ -499,15 +518,20 @@
   }
 
   .legal a {
-    min-height: 44px; /* Touch-friendly */
+    min-height: 40px;
     display: flex;
     align-items: center;
-    padding: 0 clamp(8px, 1.56vw, 12px);
+    padding: 0 clamp(6px, 1.2vw, 10px);
+    font-size: clamp(12px, 2.3vw, 14px);
   }
 
   .copyright {
     flex-direction: column;
-    gap: clamp(4px, 0.78vw, 8px);
+    gap: clamp(4px, 0.78vw, 6px);
+    text-align: center;
+  }
+
+  :global(.lang-en) .copyright {
     text-align: center;
   }
 }
@@ -515,55 +539,96 @@
 /* الأجهزة الصغيرة (480px) */
 @media (max-width: 480px) {
   .footer {
-    padding: clamp(28px, 5.8vw, 32px) clamp(12px, 2.5vw, 16px) clamp(20px, 4.2vw, 24px);
-    gap: clamp(20px, 4.2vw, 24px);
+    padding: clamp(28px, 5.8vw, 36px) clamp(12px, 2.5vw, 16px) clamp(20px, 4.2vw, 26px);
+    gap: clamp(20px, 4.2vw, 26px);
   }
 
   .content {
-    gap: clamp(24px, 5vw, 28px);
+    gap: clamp(20px, 4.2vw, 26px);
+  }
+
+  .logo {
+    width: clamp(80px, 16.7vw, 100px);
+    height: clamp(32px, 6.7vw, 40px);
   }
 
   .sectionTitle {
-    font-size: clamp(17px, 3.5vw, 20px);
+    font-size: clamp(15px, 3.1vw, 17px);
   }
 
   .description {
-    font-size: clamp(15px, 3.1vw, 18px);
+    font-size: clamp(13px, 2.7vw, 15px);
   }
 
   .linksList li {
-    font-size: clamp(15px, 3.1vw, 18px);
+    font-size: clamp(13px, 2.7vw, 15px);
+    min-height: 36px;
   }
 
   .email {
-    font-size: clamp(15px, 3.1vw, 18px);
+    font-size: clamp(13px, 2.7vw, 15px);
+    min-height: 36px;
+  }
+
+  .socialIcon {
+    width: clamp(38px, 7.9vw, 44px);
+    height: clamp(38px, 7.9vw, 44px);
+  }
+
+  .socialIcon img,
+  .socialIcon svg {
+    width: clamp(22px, 4.6vw, 26px);
+    height: clamp(22px, 4.6vw, 26px);
   }
 }
 
 /* الأجهزة الصغيرة جداً (360px) */
 @media (max-width: 360px) {
   .footer {
-    padding: clamp(24px, 6.7vw, 28px) clamp(10px, 2.8vw, 14px) clamp(18px, 5vw, 20px);
+    padding: clamp(24px, 6.7vw, 32px) clamp(10px, 2.8vw, 14px) clamp(18px, 5vw, 22px);
+    gap: clamp(18px, 5vw, 22px);
+  }
+
+  .content {
+    gap: clamp(18px, 5vw, 22px);
+  }
+
+  .logo {
+    width: clamp(70px, 19.4vw, 90px);
+    height: clamp(28px, 7.8vw, 36px);
   }
 
   .sectionTitle {
-    font-size: clamp(16px, 4.4vw, 18px);
+    font-size: clamp(14px, 3.9vw, 16px);
   }
 
   .description {
-    font-size: clamp(14px, 3.9vw, 16px);
+    font-size: clamp(12px, 3.3vw, 14px);
   }
 
   .linksList li {
-    font-size: clamp(14px, 3.9vw, 16px);
+    font-size: clamp(12px, 3.3vw, 14px);
+    min-height: 34px;
   }
 
   .email {
-    font-size: clamp(14px, 3.9vw, 16px);
+    font-size: clamp(12px, 3.3vw, 14px);
+    min-height: 34px;
   }
 
   .socialIcon {
-    width: clamp(40px, 11.1vw, 44px);
-    height: clamp(40px, 11.1vw, 44px);
+    width: clamp(36px, 10vw, 40px);
+    height: clamp(36px, 10vw, 40px);
+  }
+
+  .socialIcon img,
+  .socialIcon svg {
+    width: clamp(20px, 5.6vw, 24px);
+    height: clamp(20px, 5.6vw, 24px);
+  }
+
+  .legal a {
+    font-size: clamp(11px, 3.1vw, 13px);
+    min-height: 36px;
   }
 }

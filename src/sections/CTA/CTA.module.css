@@ -31,6 +31,13 @@
   margin-left: auto;
 }
 
+/* LTR adjustments - move text to the right side */
+:global(.lang-en) .rightContent {
+  margin-left: 0;
+  margin-right: auto;
+  padding-right: 50px;
+}
+
 .textContent {
   display: flex;
   flex-direction: column;
@@ -234,6 +241,17 @@
 
 .phone2 > div {
   transform: rotate(15.67deg);
+}
+
+/* LTR adjustments - move phones to the left side */
+:global(.lang-en) .phone1 {
+  left: auto;
+  right: 44.43px;
+}
+
+:global(.lang-en) .phone2 {
+  left: auto;
+  right: 209px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -510,31 +528,36 @@
   }
 }
 
-/* Mobile - stack phones with better layout */
+/* Mobile - clean CTA without phones */
 @media (max-width: 768px) {
   .ctaWrapper {
     padding: clamp(24px, 4.7vw, 32px) clamp(16px, 3.1vw, 20px);
   }
 
   .cta {
-    padding: clamp(40px, 7.8vw, 48px) clamp(20px, 3.9vw, 24px);
+    padding: clamp(36px, 7vw, 48px) clamp(20px, 3.9vw, 28px);
     min-height: auto;
     flex-direction: column;
     align-items: center;
-    gap: clamp(32px, 6.25vw, 40px);
-    border-radius: clamp(32px, 6.25vw, 40px);
+    gap: clamp(20px, 3.9vw, 28px);
+    border-radius: clamp(24px, 4.7vw, 32px);
   }
 
   .rightContent {
     width: 100%;
     margin-left: 0;
+    padding-right: 0;
     z-index: 2;
+  }
+
+  :global(.lang-en) .rightContent {
+    padding-right: 0;
   }
 
   .textContent {
     align-items: center;
     text-align: center;
-    gap: clamp(18px, 3.5vw, 22px);
+    gap: clamp(14px, 2.7vw, 18px);
     width: 100%;
   }
 
@@ -544,7 +567,7 @@
   }
 
   .title {
-    font-size: clamp(24px, 4.7vw, 30px);
+    font-size: clamp(26px, 5.1vw, 32px);
     text-align: center;
     width: 100%;
     max-width: 100%;
@@ -552,7 +575,7 @@
   }
 
   .subtitle {
-    font-size: clamp(16px, 3.1vw, 20px);
+    font-size: clamp(15px, 2.9vw, 18px);
     text-align: center;
     width: 100%;
     max-width: 100%;
@@ -560,15 +583,31 @@
   }
 
   .subtitle p {
-    line-height: 1.6;
+    line-height: 1.5;
   }
 
   .button {
     align-self: center;
     margin-left: 0;
-    padding: clamp(14px, 2.7vw, 16px) clamp(24px, 4.7vw, 28px);
-    font-size: clamp(15px, 2.9vw, 17px);
-    min-height: 48px; /* Touch-friendly */
+    padding: clamp(12px, 2.3vw, 16px) clamp(20px, 3.9vw, 28px);
+    font-size: clamp(14px, 2.7vw, 16px);
+    min-height: 48px;
+    border-radius: 50px;
+  }
+
+  .buttonIconWrapper {
+    width: 28px;
+    height: 28px;
+  }
+
+  .buttonIconContainer {
+    width: 28px;
+    height: 28px;
+  }
+
+  .buttonIconContainer svg {
+    width: 14px;
+    height: 14px;
   }
 
   /* إخفاء صور الجوالات على الجوال */
@@ -579,91 +618,70 @@
     width: 0;
     height: 0;
     overflow: hidden;
+    position: absolute;
+    pointer-events: none;
   }
 
   .phone1,
   .phone2 {
     display: none !important;
-    visibility: hidden;
-    opacity: 0;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-  }
-
-  .phoneFrame,
-  .phoneScreen,
-  .phoneScreenImage,
-  .phoneNotch {
-    display: none !important;
-    visibility: hidden;
-    opacity: 0;
   }
 
   .pattern {
-    width: clamp(1000px, 195vw, 1500px);
-    height: clamp(562px, 110vw, 844px);
-    opacity: 0.05;
+    width: clamp(800px, 156vw, 1200px);
+    height: clamp(450px, 88vw, 675px);
+    opacity: 0.06;
   }
 }
 
 /* الأجهزة الصغيرة (480px) */
 @media (max-width: 480px) {
   .ctaWrapper {
-    padding: clamp(20px, 4.2vw, 24px) clamp(12px, 2.5vw, 16px);
+    padding: clamp(20px, 4.2vw, 28px) clamp(12px, 2.5vw, 16px);
   }
 
   .cta {
-    padding: clamp(32px, 6.7vw, 40px) clamp(16px, 3.3vw, 20px);
-    gap: clamp(28px, 5.8vw, 32px);
+    padding: clamp(28px, 5.8vw, 36px) clamp(16px, 3.3vw, 22px);
+    gap: clamp(16px, 3.3vw, 22px);
+    border-radius: clamp(20px, 4.2vw, 28px);
   }
 
   .title {
-    font-size: clamp(22px, 4.6vw, 28px);
+    font-size: clamp(24px, 5vw, 28px);
   }
 
   .subtitle {
-    font-size: clamp(15px, 3.1vw, 18px);
+    font-size: clamp(14px, 2.9vw, 16px);
   }
 
-  .phones {
-    gap: clamp(12px, 2.5vw, 16px);
-  }
-
-  .phone1 {
-    width: clamp(140px, 29.2vw, 180px);
-    height: clamp(252px, 52.5vw, 324px);
-  }
-
-  .phone2 {
-    width: clamp(160px, 33.3vw, 200px);
-    height: clamp(288px, 60vw, 360px);
+  .button {
+    padding: clamp(10px, 2.1vw, 14px) clamp(18px, 3.75vw, 24px);
+    font-size: clamp(13px, 2.7vw, 15px);
   }
 }
 
 /* الأجهزة الصغيرة جداً (360px) */
 @media (max-width: 360px) {
+  .ctaWrapper {
+    padding: clamp(16px, 4.4vw, 24px) clamp(10px, 2.8vw, 14px);
+  }
+
   .cta {
-    padding: clamp(28px, 7.8vw, 32px) clamp(14px, 3.9vw, 18px);
-    gap: clamp(24px, 6.7vw, 28px);
+    padding: clamp(24px, 6.7vw, 32px) clamp(14px, 3.9vw, 18px);
+    gap: clamp(14px, 3.9vw, 18px);
+    border-radius: clamp(16px, 4.4vw, 24px);
   }
 
   .title {
-    font-size: clamp(20px, 5.6vw, 24px);
+    font-size: clamp(22px, 6.1vw, 26px);
   }
 
   .subtitle {
-    font-size: clamp(14px, 3.9vw, 16px);
+    font-size: clamp(13px, 3.6vw, 15px);
   }
 
-  .phones {
-    flex-direction: column;
-    gap: clamp(12px, 3.3vw, 16px);
-  }
-
-  .phone1,
-  .phone2 {
-    width: clamp(150px, 41.7vw, 180px);
-    height: clamp(270px, 75vw, 324px);
+  .button {
+    padding: clamp(10px, 2.8vw, 12px) clamp(16px, 4.4vw, 20px);
+    font-size: clamp(12px, 3.3vw, 14px);
   }
 }
