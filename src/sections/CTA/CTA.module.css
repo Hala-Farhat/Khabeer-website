@@ -45,7 +45,7 @@
 }
 
 /* LTR adjustments for English */
-.lang-en .textContent {
+:global(.lang-en) .textContent {
   align-items: flex-start;
   text-align: left;
 }
@@ -61,7 +61,7 @@
 }
 
 /* LTR adjustments for English */
-.lang-en .content {
+:global(.lang-en) .content {
   align-items: flex-start;
   text-align: left;
 }
@@ -128,6 +128,14 @@
   margin-left: auto;
 }
 
+/* LTR adjustments for English - button position */
+:global(.lang-en) .button {
+  align-self: flex-start;
+  margin-left: 0;
+  margin-right: auto;
+  flex-direction: row-reverse;
+}
+
 .button:hover {
   opacity: 0.9;
 }
@@ -149,7 +157,7 @@
 }
 
 /* Flip icon for LTR - only when English is active */
-.lang-en .buttonIconContainer {
+:global(.lang-en) .buttonIconContainer {
   transform: none;
 }
 
@@ -427,7 +435,7 @@
     width: 100%;
   }
 
-  .lang-en .textContent {
+  :global(.lang-en) .textContent {
     align-items: center;
     text-align: center;
   }
@@ -524,7 +532,7 @@
     width: 100%;
   }
 
-  .lang-en .textContent {
+  :global(.lang-en) .textContent {
     align-items: center;
     text-align: center;
   }

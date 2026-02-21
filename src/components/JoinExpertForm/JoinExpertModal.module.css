@@ -485,6 +485,15 @@
   transform: rotate(180deg);
 }
 
+/* LTR adjustments for English - arrow direction */
+[dir="ltr"] .arrow {
+  transform: scaleX(-1);
+}
+
+[dir="ltr"] .arrowUp {
+  transform: scaleX(-1) rotate(180deg);
+}
+
 .dropdown {
   position: absolute;
   top: calc(100% + 8px);

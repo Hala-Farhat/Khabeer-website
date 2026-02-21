@@ -22,11 +22,11 @@
 }
 
 /* LTR adjustments for English */
-.lang-en .aboutApp {
+:global(.lang-en) .aboutApp {
   align-items: center;
 }
 
-.lang-en .container {
+:global(.lang-en) .container {
   align-items: center;
 }
 
@@ -46,6 +46,7 @@
   transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
               transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-sizing: border-box;
+  flex-direction: row-reverse;
 }
 
 .badge.animate {
@@ -54,8 +55,8 @@
 }
 
 /* LTR adjustments for English */
-.lang-en .badge {
-  /* Same as default - centered */
+:global(.lang-en) .badge {
+  flex-direction: row;
 }
 
 .badge span {
@@ -102,7 +103,7 @@
 }
 
 /* LTR adjustments for English */
-.lang-en .content {
+:global(.lang-en) .content {
   justify-content: flex-start;
   text-align: left;
   margin-left: auto;
@@ -185,7 +186,7 @@
     align-items: center;
   }
 
-  .lang-en .container {
+  :global(.lang-en) .container {
     align-items: center;
   }
 
@@ -195,7 +196,7 @@
     align-self: center;
   }
 
-  .lang-en .badge {
+  :global(.lang-en) .badge {
     align-self: center;
     margin-left: 0;
     margin-right: 0;
@@ -211,7 +212,7 @@
     padding: 0 clamp(12px, 1.56vw, 16px);
   }
 
-  .lang-en .content {
+  :global(.lang-en) .content {
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -252,7 +253,7 @@
     align-items: center;
   }
 
-  .lang-en .container {
+  :global(.lang-en) .container {
     align-items: center;
   }
 
@@ -263,7 +264,7 @@
     width: fit-content;
   }
 
-  .lang-en .badge {
+  :global(.lang-en) .badge {
     align-self: center;
     margin-left: 0 !important;
     margin-right: 0 !important;
@@ -281,7 +282,7 @@
     box-sizing: border-box;
   }
 
-  .lang-en .content {
+  :global(.lang-en) .content {
     align-items: center !important;
     justify-content: center !important;
     text-align: center;

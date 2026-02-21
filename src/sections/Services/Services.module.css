@@ -16,6 +16,12 @@
   align-items: center;
   gap: 8px;
   background: linear-gradient(158.6293777306568deg, rgba(252, 92, 0, 0.1) 0%, rgba(240, 177, 0, 0.1) 100%);
+  flex-direction: row-reverse;
+}
+
+/* LTR adjustments for English */
+:global(.lang-en) .badge {
+  flex-direction: row;
 }
 
 .badge span {
@@ -160,7 +166,7 @@
 }
 
 /* LTR adjustments for English */
-.lang-en .cardContent {
+:global(.lang-en) .cardContent {
   align-items: flex-start;
   text-align: left;
   direction: ltr;
@@ -179,7 +185,7 @@
 }
 
 /* LTR adjustments for English */
-.lang-en .cardTitle {
+:global(.lang-en) .cardTitle {
   text-align: left;
   direction: ltr;
 }
@@ -197,7 +203,7 @@
 }
 
 /* LTR adjustments for English */
-.lang-en .cardDescription {
+:global(.lang-en) .cardDescription {
   text-align: left;
   direction: ltr;
 }

@@ -92,6 +92,17 @@
   flex-shrink: 0;
 }
 
+/* LTR adjustments for English - button icon order */
+:global(.lang-en) .joinButton,
+:global(.lang-en) .sidebarJoinButton {
+  flex-direction: row-reverse;
+}
+
+:global(.lang-en) .countryButton,
+:global(.lang-en) .sidebarCountryButton {
+  flex-direction: row-reverse;
+}
+
 .menu {
   display: flex;
   align-items: center;

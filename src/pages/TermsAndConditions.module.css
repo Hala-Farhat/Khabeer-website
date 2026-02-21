@@ -27,7 +27,7 @@
   width: 100%;
 }
 
-.lang-en .title {
+:global(.lang-en) .title {
   text-align: left;
 }
 
@@ -46,7 +46,7 @@
   width: 100%;
 }
 
-.lang-en .section {
+:global(.lang-en) .section {
   align-items: flex-start;
 }
 
@@ -61,7 +61,7 @@
   width: 100%;
 }
 
-.lang-en .sectionTitle {
+:global(.lang-en) .sectionTitle {
   text-align: left;
 }
 
@@ -77,7 +77,7 @@
   white-space: pre-wrap;
 }
 
-.lang-en .paragraph {
+:global(.lang-en) .paragraph {
   text-align: left;
 }
 

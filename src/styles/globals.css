@@ -34,6 +34,18 @@ body {
   text-align: left;
 }
 
+/* Flip directional icons for LTR (English) */
+.lang-en .icon-flip,
+.lang-en [data-flip-icon="true"] {
+  transform: scaleX(-1);
+}
+
+/* Icons that should flip in LTR mode - arrows, chevrons, etc. */
+.lang-en .email svg,
+.lang-en .contactItem svg {
+  /* Keep email icon as is - it's not directional */
+}
+
 .hero-shadow {
   position: absolute;
   top: 890px;

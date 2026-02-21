@@ -136,7 +136,7 @@ function FooterSection() {
         <div className={styles.copyright}>
           <span className={styles.copyrightText}>{t.footerCopyright}</span>
           <span className={styles.copyrightDash}>—</span>
-          <span className={styles.copyrightEnglish}>© 2026 khabeerapp.com/</span>
+          <span className={styles.copyrightEnglish}>© 2026 khabeerapp.com</span>
         </div>
         <div className={styles.legal}>
           <Link to="/terms-and-conditions">{t.footerTerms}</Link>
