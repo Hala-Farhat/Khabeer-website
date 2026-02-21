@@ -1,0 +1,833 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  background: #f5fbfd;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #2e536b;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+[dir="ltr"] .closeButton {
+  left: auto;
+  right: 20px;
+}
+
+.closeButton:hover {
+  background: #f5f5f5;
+  transform: rotate(90deg);
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+  padding: 40px;
+}
+
+/* القسم الأيمن - المعلومات */
+.infoSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 40px;
+  padding: 40px 0;
+}
+
+[dir="ltr"] .infoSection {
+  align-items: flex-start;
+}
+
+.infoHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+[dir="ltr"] .infoHeader {
+  align-items: flex-start;
+}
+
+.infoTitle {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: normal;
+  color: #0077b6;
+  margin: 0;
+  text-align: right;
+  width: 100%;
+}
+
+[dir="ltr"] .infoTitle {
+  text-align: left;
+}
+
+.infoSubtitle {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #2e536b;
+  margin: 0;
+  letter-spacing: -0.3125px;
+  text-align: right;
+  width: 100%;
+}
+
+[dir="ltr"] .infoSubtitle {
+  text-align: left;
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 16px;
+  width: 100%;
+}
+
+[dir="ltr"] .benefitsList {
+  align-items: flex-start;
+}
+
+.benefitItem {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+[dir="ltr"] .benefitItem {
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.benefitItem span {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #2e536b;
+  letter-spacing: -0.3125px;
+  text-align: right;
+}
+
+[dir="ltr"] .benefitItem span {
+  text-align: left;
+}
+
+.checkIcon {
+  flex-shrink: 0;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 40px;
+  width: 100%;
+}
+
+[dir="ltr"] .contactInfo {
+  align-items: flex-start;
+}
+
+.contactSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+[dir="ltr"] .contactSection {
+  align-items: flex-start;
+}
+
+.contactTitle {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: normal;
+  color: #2e536b;
+  margin: 0;
+  letter-spacing: -0.4px;
+  text-align: right;
+  width: 100%;
+}
+
+[dir="ltr"] .contactTitle {
+  text-align: left;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: 8px;
+}
+
+[dir="ltr"] .contactItem {
+  flex-direction: row;
+}
+
+.contactItem span {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #2e536b;
+  text-align: right;
+}
+
+[dir="ltr"] .contactItem span {
+  text-align: left;
+}
+
+.contactIcon {
+  flex-shrink: 0;
+}
+
+.socialIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.socialItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.socialItem span {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #2e536b;
+  text-align: center;
+}
+
+.socialIconLink {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.socialIconLink:hover {
+  background: #ddd;
+}
+
+.socialIconLink img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* القسم الأيسر - الفورم */
+.formSection {
+  flex: 1;
+  background: white;
+  border: 1px solid rgba(0, 184, 219, 0.3);
+  border-radius: 16px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.formHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+[dir="ltr"] .formHeader {
+  align-items: flex-start;
+}
+
+.formTitle {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #2e536b;
+  margin: 0;
+  text-align: right;
+  width: 100%;
+}
+
+[dir="ltr"] .formTitle {
+  text-align: left;
+}
+
+.locationBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f3ff;
+  border: 0.556px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 8px 12px;
+  flex-direction: row-reverse;
+}
+
+[dir="ltr"] .locationBadge {
+  flex-direction: row;
+}
+
+.locationBadge span {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #2e536b;
+  letter-spacing: -0.1504px;
+}
+
+.locationIcon {
+  flex-shrink: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+[dir="ltr"] .formGroup {
+  align-items: flex-start;
+}
+
+.label {
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #2e536b;
+  text-align: right;
+  width: 100%;
+}
+
+[dir="ltr"] .label {
+  text-align: left;
+}
+
+.nameInputs {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  width: 100%;
+  height: 56px;
+  border: 2px solid rgba(0, 184, 219, 0.3);
+  border-radius: 20px;
+  padding: 14px 24px;
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.66;
+  color: #2e536b;
+  background: transparent;
+  text-align: right;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[dir="ltr"] .input {
+  text-align: left;
+}
+
+.input::placeholder {
+  color: #aaa;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #00b8db;
+  box-shadow: 0 0 0 3px rgba(0, 184, 219, 0.1);
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select {
+  width: 100%;
+  height: 56px;
+  border: 2px solid rgba(0, 184, 219, 0.3);
+  border-radius: 20px;
+  padding: 14px 24px;
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.66;
+  color: #2e536b;
+  background: white;
+  text-align: right;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[dir="ltr"] .select {
+  text-align: left;
+  flex-direction: row-reverse;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #00b8db;
+  box-shadow: 0 0 0 3px rgba(0, 184, 219, 0.1);
+}
+
+.selectOpen {
+  border-color: #00b8db;
+}
+
+.placeholder {
+  color: #aaa;
+}
+
+.selectedValue {
+  color: #2e536b;
+}
+
+.arrow {
+  flex-shrink: 0;
+  color: #2e536b;
+  transition: transform 0.3s ease;
+}
+
+.arrowUp {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid rgba(0, 184, 219, 0.3);
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: dropdownFade 0.2s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownItem {
+  width: 100%;
+  padding: 14px 24px;
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.66;
+  color: #2e536b;
+  background: transparent;
+  border: none;
+  text-align: right;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+[dir="ltr"] .dropdownItem {
+  text-align: left;
+}
+
+.dropdownItem:hover {
+  background: #f5fbfd;
+}
+
+.dropdownItem.selected {
+  background: rgba(0, 184, 219, 0.1);
+  color: #0077b6;
+}
+
+.submitButton {
+  width: 100%;
+  height: 72px;
+  background: #f7941d;
+  border: none;
+  border-radius: 99px;
+  font-family: 'Alexandria', var(--font-family);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.89;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background: #e8850f;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(247, 148, 29, 0.3);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .modal {
+    max-width: 95%;
+  }
+  
+  .content {
+    padding: 30px;
+    gap: 20px;
+  }
+  
+  .infoSection {
+    padding: 20px 0;
+    gap: 30px;
+  }
+  
+  .infoTitle {
+    font-size: 32px;
+  }
+  
+  .infoSubtitle,
+  .benefitItem span,
+  .contactItem span {
+    font-size: 18px;
+  }
+  
+  .formSection {
+    padding: 30px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal {
+    max-height: 95vh;
+  }
+  
+  .closeButton {
+    top: 15px;
+    left: 15px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  [dir="ltr"] .closeButton {
+    left: auto;
+    right: 15px;
+  }
+  
+  .content {
+    flex-direction: column-reverse;
+    padding: 20px;
+    gap: 24px;
+  }
+  
+  .infoSection {
+    padding: 0;
+    gap: 24px;
+    align-items: flex-end;
+    text-align: right;
+  }
+  
+  [dir="ltr"] .infoSection {
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .infoHeader {
+    text-align: right;
+  }
+  
+  [dir="ltr"] .infoHeader {
+    text-align: left;
+  }
+  
+  .infoTitle {
+    font-size: 28px;
+  }
+  
+  .infoSubtitle {
+    font-size: 16px;
+    line-height: 28px;
+  }
+  
+  .benefitItem {
+    justify-content: flex-end;
+  }
+  
+  [dir="ltr"] .benefitItem {
+    justify-content: flex-start;
+  }
+  
+  .benefitItem span {
+    font-size: 16px;
+    line-height: 28px;
+  }
+  
+  .contactSection {
+    align-items: flex-end;
+  }
+  
+  [dir="ltr"] .contactSection {
+    align-items: flex-start;
+  }
+  
+  .contactItem {
+    justify-content: flex-end;
+  }
+  
+  [dir="ltr"] .contactItem {
+    justify-content: flex-start;
+  }
+  
+  .contactItem span {
+    font-size: 16px;
+  }
+  
+  .contactTitle {
+    font-size: 18px;
+  }
+  
+  .formSection {
+    padding: 24px;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .formHeader {
+    align-items: flex-end;
+  }
+  
+  [dir="ltr"] .formHeader {
+    align-items: flex-start;
+  }
+  
+  .formTitle {
+    font-size: 18px;
+    text-align: right;
+  }
+  
+  [dir="ltr"] .formTitle {
+    text-align: left;
+  }
+  
+  .locationBadge {
+    flex-wrap: wrap;
+  }
+  
+  .locationBadge span {
+    font-size: 13px;
+  }
+  
+  .form {
+    gap: 24px;
+  }
+  
+  .label {
+    font-size: 16px;
+    text-align: right;
+  }
+  
+  [dir="ltr"] .label {
+    text-align: left;
+  }
+  
+  .nameInputs {
+    flex-direction: column;
+  }
+  
+  .input {
+    height: 52px;
+    font-size: 15px;
+    text-align: right;
+  }
+  
+  [dir="ltr"] .input {
+    text-align: left;
+  }
+  
+  .select {
+    height: 52px;
+    font-size: 15px;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  
+  .dropdownItem {
+    text-align: right;
+    font-size: 15px;
+  }
+  
+  [dir="ltr"] .dropdownItem {
+    text-align: left;
+  }
+  
+  .submitButton {
+    height: 60px;
+    font-size: 18px;
+  }
+  
+  .socialIcon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .socialIcon img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 16px;
+  }
+  
+  .infoTitle {
+    font-size: 24px;
+  }
+  
+  .infoSubtitle {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  .benefitItem span {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  .formSection {
+    padding: 20px;
+  }
+  
+  .formTitle {
+    font-size: 16px;
+  }
+  
+  .locationBadge span {
+    font-size: 12px;
+  }
+  
+  .label {
+    font-size: 14px;
+  }
+  
+  .input {
+    height: 48px;
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+  
+  .select {
+    height: 48px;
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+  
+  .dropdownItem {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+  
+  .submitButton {
+    height: 54px;
+    font-size: 16px;
+  }
+}

@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import styles from './NavbarSection.module.css'
 import logoImage from '../../assets/images/footer/Frame 90.png'
 import caseRoundIcon from '../../assets/images/hero/Case Round.svg'
 import globeIcon from '../../assets/images/hero/Globe.png'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
+import JoinExpertModal from '../../components/JoinExpertForm/JoinExpertModal'
 
 function NavbarSection() {
   const { language, setLanguage } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
   const t = translations[language]
 
   useEffect(() => {
@@ -56,14 +61,60 @@ function NavbarSection() {
     closeMenu()
   }
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const navbarHeight = 126
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - navbarHeight
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+      return true
+    }
+    return false
+  }
+
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault()
+    closeMenu()
+    
+    // إذا كنا في الصفحة الرئيسية، فقط ننتقل للقسم
+    if (location.pathname === '/') {
+      // ننتظر قليلاً للتأكد من أن القائمة أُغلقت
+      setTimeout(() => {
+        scrollToSection(sectionId)
+      }, 100)
+    } else {
+      // إذا كنا في صفحة أخرى، ننتقل للصفحة الرئيسية ثم للقسم
+      navigate('/')
+      setTimeout(() => {
+        scrollToSection(sectionId)
+      }, 500)
+    }
+  }
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    if (location.pathname !== '/') {
+      navigate('/')
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <img src={logoImage} alt="Khabeer Logo" />
+          <a href="/" onClick={handleLogoClick} style={{ display: 'block', cursor: 'pointer' }}>
+            <img src={logoImage} alt="Khabeer Logo" />
+          </a>
         </div>
         <div className={styles.menu}>
-          <a href="#about">{t.navAbout}</a>
+        <a href="#about">{t.navAbout}</a>
           <a href="#features">{t.navFeatures}</a>
           <a href="#services">{t.navServices}</a>
           <a href="#experts">{t.navExperts}</a>
@@ -77,7 +128,10 @@ function NavbarSection() {
             <img src={globeIcon} alt="Globe" className={styles.globeIcon} />
             <span>{language === 'ar' ? 'ع' : 'EN'}</span>
           </button>
-          <button className={styles.joinButton}>
+          <button 
+            className={styles.joinButton}
+            onClick={() => setIsModalOpen(true)}
+          >
             <img src={caseRoundIcon} alt="Case Round" className={styles.caseRoundIcon} />
             <span>{t.joinExpert}</span>
           </button>
@@ -117,10 +171,10 @@ function NavbarSection() {
             </button>
           </div>
           <nav className={styles.sidebarMenu}>
-            <a href="#about" onClick={handleMenuClick}>{t.navAbout}</a>
-            <a href="#features" onClick={handleMenuClick}>{t.navFeatures}</a>
-            <a href="#services" onClick={handleMenuClick}>{t.navServices}</a>
-            <a href="#experts" onClick={handleMenuClick}>{t.navExperts}</a>
+          <a href="#about">{t.navAbout}</a>
+          <a href="#features">{t.navFeatures}</a>
+          <a href="#services">{t.navServices}</a>
+          <a href="#experts">{t.navExperts}</a>
           </nav>
           <div className={styles.sidebarButtons}>
             <button 
@@ -135,7 +189,10 @@ function NavbarSection() {
             </button>
             <button 
               className={styles.sidebarJoinButton}
-              onClick={closeMenu}
+              onClick={() => {
+                closeMenu()
+                setIsModalOpen(true)
+              }}
             >
               <img src={caseRoundIcon} alt="Case Round" className={styles.caseRoundIcon} />
               <span>{t.joinExpert}</span>
@@ -143,6 +200,12 @@ function NavbarSection() {
           </div>
         </div>
       </div>
+    
+      {/* Join Expert Modal */}
+      <JoinExpertModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </nav>
   )
 }

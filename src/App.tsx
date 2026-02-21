@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsAndConditions from './pages/TermsAndConditions'
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
 
 function AppContent() {
@@ -17,13 +20,21 @@ function AppContent() {
     }
   }, [language])
 
-  return <Home />
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+    </Routes>
+  )
 }
 
 function App() {
   return (
     <LanguageProvider>
-      <AppContent />
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
     </LanguageProvider>
   )
 }

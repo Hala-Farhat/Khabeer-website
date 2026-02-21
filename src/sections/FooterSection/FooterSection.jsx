@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
 import styles from './FooterSection.module.css'
@@ -9,14 +10,60 @@ import whatsappIcon from '../../assets/images/footer/whatsapp logo.png'
 
 function FooterSection() {
   const { language } = useLanguage()
+  const navigate = useNavigate()
+  const location = useLocation()
   const t = translations[language]
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const navbarHeight = 126
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - navbarHeight
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+      return true
+    }
+    return false
+  }
+
+  const handleFooterNavClick = (e, sectionId) => {
+    e.preventDefault()
+    
+    // إذا كنا في الصفحة الرئيسية، فقط ننتقل للقسم
+    if (location.pathname === '/') {
+      setTimeout(() => {
+        scrollToSection(sectionId)
+      }, 100)
+    } else {
+      // إذا كنا في صفحة أخرى، ننتقل للصفحة الرئيسية ثم للقسم
+      navigate('/')
+      setTimeout(() => {
+        scrollToSection(sectionId)
+      }, 500)
+    }
+  }
+
+  const handleLogoClick = (e) => {
+    e.preventDefault()
+    if (location.pathname !== '/') {
+      navigate('/')
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
   
   return (
     <footer className={styles.footer}>
       <div className={styles.content}>
         <div className={styles.about}>
           <div className={styles.logo}>
-            <img src={logoImage} alt="Khabeer Logo" />
+            <a href="/" onClick={handleLogoClick} style={{ display: 'block', cursor: 'pointer' }}>
+              <img src={logoImage} alt="Khabeer Logo" />
+            </a>
           </div>
           <p className={styles.description}>
             {t.footerDescription}
@@ -25,10 +72,10 @@ function FooterSection() {
         <div className={styles.links}>
           <h3 className={styles.sectionTitle}>{t.footerQuickLinks}</h3>
           <ul className={styles.linksList}>
-            <li><a href="#about">{t.footerAbout}</a></li>
-            <li><a href="#features">{t.footerFeatures}</a></li>
-            <li><a href="#services">{t.footerServices}</a></li>
-            <li><a href="#experts">{t.footerExperts}</a></li>
+          <a href="#about">{t.navAbout}</a>
+          <a href="#features">{t.navFeatures}</a>
+          <a href="#services">{t.navServices}</a>
+          <a href="#experts">{t.navExperts}</a>
           </ul>
         </div>
         <div className={styles.contact}>
@@ -89,11 +136,11 @@ function FooterSection() {
         <div className={styles.copyright}>
           <span className={styles.copyrightText}>{t.footerCopyright}</span>
           <span className={styles.copyrightDash}>—</span>
-          <span className={styles.copyrightEnglish}>© 2026 khabeer.com</span>
+          <span className={styles.copyrightEnglish}>© 2026 khabeerapp.com/</span>
         </div>
         <div className={styles.legal}>
-          <a href="#">{t.footerTerms}</a>
-          <a href="#">{t.footerPrivacy}</a>
+          <Link to="/terms-and-conditions">{t.footerTerms}</Link>
+          <Link to="/privacy-policy">{t.footerPrivacy}</Link>
         </div>
       </div>
     </footer>

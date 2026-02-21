@@ -22,18 +22,19 @@ function AboutApp() {
   
   return (
     <section className={styles.aboutApp} id="about">
-      <div ref={badgeRef} className={`${styles.badge} ${badgeVisible ? styles.animate : ''}`}>
-        <div className={styles.badgeDot}></div>
-        <span>{t.aboutBadge}</span>
-      </div>
-      <div ref={contentRef} className={`${styles.content} ${contentVisible ? styles.animate : ''}`}>   
-        <h2 className={styles.heading}>
-          {t.aboutHeading}
-        </h2>
-        <p className={styles.text}>
-          {t.aboutText}
-        </p>
-
+      <div className={styles.container}>
+        <div ref={badgeRef} className={`${styles.badge} ${badgeVisible ? styles.animate : ''}`}>
+          <div className={styles.badgeDot}></div>
+          <span>{t.aboutBadge}</span>
+        </div>
+        <div ref={contentRef} className={`${styles.content} ${contentVisible ? styles.animate : ''}`}>   
+          <h2 className={styles.heading}>
+            {t.aboutHeading}
+          </h2>
+          <p className={styles.text}>
+            {t.aboutText}
+          </p>
+        </div>
       </div>
     </section>
   )

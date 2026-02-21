@@ -231,9 +231,12 @@
   flex-direction: row;
 }
 
-.legal a {
+.legal a,
+.legal a:link,
+.legal a:visited {
   transition: color 0.2s;
   color: #94a3b8;
+  text-decoration: none;
 }
 
 .legal a:hover {
