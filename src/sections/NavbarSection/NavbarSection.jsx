@@ -7,6 +7,7 @@ import globeIcon from '../../assets/images/hero/Globe.png'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
 import JoinExpertModal from '../../components/JoinExpertForm/JoinExpertModal'
+import Analytics from '../../utils/analytics'
 
 function NavbarSection() {
   const { language, setLanguage } = useLanguage()
@@ -45,7 +46,9 @@ function NavbarSection() {
   }, [menuOpen])
 
   const toggleLanguage = () => {
-    setLanguage(language === 'ar' ? 'en' : 'ar')
+    const newLang = language === 'ar' ? 'en' : 'ar'
+    setLanguage(newLang)
+    Analytics.languageChange(newLang)
   }
 
   const toggleMenu = () => {
@@ -80,15 +83,13 @@ function NavbarSection() {
   const handleNavClick = (e, sectionId) => {
     e.preventDefault()
     closeMenu()
+    Analytics.navClick(sectionId)
     
-    // إذا كنا في الصفحة الرئيسية، فقط ننتقل للقسم
     if (location.pathname === '/') {
-      // ننتظر قليلاً للتأكد من أن القائمة أُغلقت
       setTimeout(() => {
         scrollToSection(sectionId)
       }, 100)
     } else {
-      // إذا كنا في صفحة أخرى، ننتقل للصفحة الرئيسية ثم للقسم
       navigate('/')
       setTimeout(() => {
         scrollToSection(sectionId)
@@ -130,7 +131,10 @@ function NavbarSection() {
           </button>
           <button 
             className={styles.joinButton}
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              setIsModalOpen(true)
+              Analytics.joinExpertModalOpen()
+            }}
           >
             <img src={caseRoundIcon} alt="Case Round" className={styles.caseRoundIcon} />
             <span>{t.joinExpert}</span>
@@ -192,6 +196,7 @@ function NavbarSection() {
               onClick={() => {
                 closeMenu()
                 setIsModalOpen(true)
+                Analytics.joinExpertModalOpen()
               }}
             >
               <img src={caseRoundIcon} alt="Case Round" className={styles.caseRoundIcon} />
@@ -204,7 +209,10 @@ function NavbarSection() {
       {/* Join Expert Modal */}
       <JoinExpertModal 
         isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+        onClose={() => {
+          setIsModalOpen(false)
+          Analytics.joinExpertModalClose()
+        }} 
       />
     </nav>
   )

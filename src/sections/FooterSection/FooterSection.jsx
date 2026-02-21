@@ -7,6 +7,7 @@ import logoImage from '../../assets/images/footer/Frame 90.png'
 import snapchatIcon from '../../assets/images/footer/snapchat.png'
 import instagramIcon from '../../assets/images/footer/instagram.png'
 import whatsappIcon from '../../assets/images/footer/whatsapp logo.png'
+import Analytics from '../../utils/analytics'
 
 function FooterSection() {
   const { language } = useLanguage()
@@ -32,14 +33,13 @@ function FooterSection() {
 
   const handleFooterNavClick = (e, sectionId) => {
     e.preventDefault()
+    Analytics.footerLinkClick(sectionId)
     
-    // إذا كنا في الصفحة الرئيسية، فقط ننتقل للقسم
     if (location.pathname === '/') {
       setTimeout(() => {
         scrollToSection(sectionId)
       }, 100)
     } else {
-      // إذا كنا في صفحة أخرى، ننتقل للصفحة الرئيسية ثم للقسم
       navigate('/')
       setTimeout(() => {
         scrollToSection(sectionId)
@@ -86,7 +86,7 @@ function FooterSection() {
                 <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span>info@khabeer</span>
+              <span>contact@faseelah.tech</span>
             </div>
             <div className={styles.social}>
               <a 
@@ -95,6 +95,7 @@ function FooterSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Snapchat"
+                onClick={() => Analytics.socialClick('Snapchat')}
               >
                 <img src={snapchatIcon} alt="Snapchat" />
               </a>
@@ -104,6 +105,7 @@ function FooterSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
+                onClick={() => Analytics.socialClick('Instagram')}
               >
                 <img src={instagramIcon} alt="Instagram" />
               </a>
@@ -113,6 +115,7 @@ function FooterSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
+                onClick={() => Analytics.socialClick('WhatsApp')}
               >
                 <img src={whatsappIcon} alt="WhatsApp" />
               </a>
@@ -122,6 +125,7 @@ function FooterSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
+                onClick={() => Analytics.socialClick('TikTok')}
               >
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
@@ -139,8 +143,8 @@ function FooterSection() {
           <span className={styles.copyrightEnglish}>© 2026 khabeerapp.com</span>
         </div>
         <div className={styles.legal}>
-          <Link to="/terms-and-conditions">{t.footerTerms}</Link>
-          <Link to="/privacy-policy">{t.footerPrivacy}</Link>
+          <Link to="/terms-and-conditions" onClick={() => Analytics.footerLinkClick('Terms')}>{t.footerTerms}</Link>
+          <Link to="/privacy-policy" onClick={() => Analytics.footerLinkClick('Privacy')}>{t.footerPrivacy}</Link>
         </div>
       </div>
     </footer>

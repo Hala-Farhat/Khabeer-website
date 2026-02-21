@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
 import styles from './JoinExpertModal.module.css'
+import Analytics from '../../utils/analytics'
+
+const API_BASE_URL = 'https://etkan-api-107080907120.europe-west3.run.app/provider'
 
 // Icons
 import whatsappIcon from '../../assets/images/footer/whatsapp logo.png'
@@ -21,6 +24,9 @@ function JoinExpertModal({ isOpen, onClose }) {
   })
   
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
+  const [fieldErrors, setFieldErrors] = useState({})
 
   // التخصصات الأربعة من الموقع
   const specializations = [
@@ -63,6 +69,12 @@ function JoinExpertModal({ isOpen, onClose }) {
       ...prev,
       [name]: value
     }))
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => ({
+        ...prev,
+        [name]: null
+      }))
+    }
   }
 
   const handleSpecializationSelect = (spec) => {
@@ -71,21 +83,90 @@ function JoinExpertModal({ isOpen, onClose }) {
       specialization: spec.label
     }))
     setIsDropdownOpen(false)
+    if (fieldErrors.specialization) {
+      setFieldErrors(prev => ({
+        ...prev,
+        specialization: null
+      }))
+    }
   }
 
-  const handleSubmit = (e) => {
+  const mapApiFieldToForm = (apiField) => {
+    const mapping = {
+      'firstName': 'firstName',
+      'lastName': 'lastName',
+      'phone': 'phone',
+      'specialty': 'specialization',
+      'address': 'address'
+    }
+    return mapping[apiField] || apiField
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // هنا يمكن إضافة منطق إرسال الفورم
-    console.log('Form submitted:', formData)
-    // إعادة تعيين الفورم وإغلاق المودال
-    setFormData({
-      firstName: '',
-      lastName: '',
-      phone: '',
-      specialization: '',
-      address: ''
-    })
-    onClose()
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+    setFieldErrors({})
+    
+    Analytics.joinExpertFormSubmit(formData.specialization)
+
+    const requestBody = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      specialty: formData.specialization,
+      address: formData.address,
+      phone: formData.phone
+    }
+
+    try {
+      const apiUrl = `${API_BASE_URL}?lang=${language}`
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody)
+      })
+
+      const responseData = await response.json()
+      console.log('API Response:', responseData)
+
+      if (response.ok) {
+        Analytics.joinExpertFormSuccess()
+        setSubmitStatus({ type: 'success', message: language === 'ar' ? 'تم إرسال طلبك بنجاح!' : 'Your request has been submitted successfully!' })
+        setFormData({
+          firstName: '',
+          lastName: '',
+          phone: '',
+          specialization: '',
+          address: ''
+        })
+        setTimeout(() => {
+          onClose()
+          setSubmitStatus(null)
+        }, 2000)
+      } else {
+        console.error('API Error Response:', responseData)
+        Analytics.joinExpertFormError(responseData.message || 'Validation Error')
+        
+        if (responseData.errors && typeof responseData.errors === 'object') {
+          const mappedErrors = {}
+          Object.keys(responseData.errors).forEach(apiField => {
+            const formField = mapApiFieldToForm(apiField)
+            mappedErrors[formField] = responseData.errors[apiField]
+          })
+          setFieldErrors(mappedErrors)
+        } else {
+          setSubmitStatus({ type: 'error', message: language === 'ar' ? 'حدث خطأ، يرجى المحاولة مرة أخرى' : 'An error occurred, please try again' })
+        }
+      }
+    } catch (error) {
+      console.error('Network Error:', error)
+      Analytics.joinExpertFormError('Network Error')
+      setSubmitStatus({ type: 'error', message: language === 'ar' ? 'خطأ في الاتصال، يرجى المحاولة مرة أخرى' : 'Connection error, please try again' })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleOverlayClick = (e) => {
@@ -137,7 +218,7 @@ function JoinExpertModal({ isOpen, onClose }) {
                 <h3 className={styles.contactTitle}>{t.joinFormEmail}</h3>
                 <div className={styles.contactItem}>
 
-                  <span>info@khabeer</span>
+                  <span>contact@faseelah.tech</span>
                   <svg className={styles.contactIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect x="2" y="4" width="20" height="16" rx="3" stroke="#2E536B" strokeWidth="1.5"/>
                     <path d="M2 7L10.165 12.7154C11.2571 13.4283 12.7429 13.4283 13.835 12.7154L22 7" stroke="#2E536B" strokeWidth="1.5"/>
@@ -149,19 +230,19 @@ function JoinExpertModal({ isOpen, onClose }) {
                 <h3 className={styles.contactTitle}>{t.joinFormSocial}</h3>
                 <div className={styles.socialIcons}>
                   <div className={styles.socialItem}>
-                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
+                    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink} onClick={() => Analytics.socialClick('WhatsApp')}>
                       <img src={whatsappIcon} alt="WhatsApp" />
                     </a>
                     
                   </div>
                   <div className={styles.socialItem}>
-                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
+                    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink} onClick={() => Analytics.socialClick('Instagram')}>
                       <img src={instagramIcon} alt="Instagram" />
                     </a>
                     
                   </div>
                   <div className={styles.socialItem}>
-                    <a href="https://snapchat.com/" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink}>
+                    <a href="https://snapchat.com/" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink} onClick={() => Analytics.socialClick('Snapchat')}>
                       <img src={snapchatIcon} alt="Snapchat" />
                     </a>
                    
@@ -189,24 +270,34 @@ function JoinExpertModal({ isOpen, onClose }) {
               <div className={styles.formGroup}>
                 <label className={styles.label}>{t.joinFormFullName}</label>
                 <div className={styles.nameInputs}>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    placeholder={t.joinFormLastName}
-                    className={styles.input}
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    placeholder={t.joinFormFirstName}
-                    className={styles.input}
-                    required
-                  />
+                  <div className={styles.inputWrapper}>
+                    <input
+                      type="text"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      placeholder={t.joinFormLastName}
+                      className={`${styles.input} ${fieldErrors.lastName ? styles.inputError : ''}`}
+                      required
+                    />
+                    {fieldErrors.lastName && (
+                      <span className={styles.fieldError}>{fieldErrors.lastName}</span>
+                    )}
+                  </div>
+                  <div className={styles.inputWrapper}>
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      placeholder={t.joinFormFirstName}
+                      className={`${styles.input} ${fieldErrors.firstName ? styles.inputError : ''}`}
+                      required
+                    />
+                    {fieldErrors.firstName && (
+                      <span className={styles.fieldError}>{fieldErrors.firstName}</span>
+                    )}
+                  </div>
                 </div>
               </div>
               
@@ -218,10 +309,13 @@ function JoinExpertModal({ isOpen, onClose }) {
                   value={formData.phone}
                   onChange={handleInputChange}
                   placeholder="+966 000 000 0000"
-                  className={styles.input}
+                  className={`${styles.input} ${fieldErrors.phone ? styles.inputError : ''}`}
                   dir="ltr"
                   required
                 />
+                {fieldErrors.phone && (
+                  <span className={styles.fieldError}>{fieldErrors.phone}</span>
+                )}
               </div>
               
               <div className={styles.formGroup}>
@@ -229,7 +323,7 @@ function JoinExpertModal({ isOpen, onClose }) {
                 <div className={styles.selectWrapper}>
                   <button
                     type="button"
-                    className={`${styles.select} ${isDropdownOpen ? styles.selectOpen : ''}`}
+                    className={`${styles.select} ${isDropdownOpen ? styles.selectOpen : ''} ${fieldErrors.specialization ? styles.selectError : ''}`}
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   >
                     <span className={formData.specialization ? styles.selectedValue : styles.placeholder}>
@@ -254,6 +348,9 @@ function JoinExpertModal({ isOpen, onClose }) {
                     </div>
                   )}
                 </div>
+                {fieldErrors.specialization && (
+                  <span className={styles.fieldError}>{fieldErrors.specialization}</span>
+                )}
               </div>
               
               <div className={styles.formGroup}>
@@ -264,13 +361,28 @@ function JoinExpertModal({ isOpen, onClose }) {
                   value={formData.address}
                   onChange={handleInputChange}
                   placeholder={t.joinFormAddressPlaceholder}
-                  className={styles.input}
+                  className={`${styles.input} ${fieldErrors.address ? styles.inputError : ''}`}
                   required
                 />
+                {fieldErrors.address && (
+                  <span className={styles.fieldError}>{fieldErrors.address}</span>
+                )}
               </div>
               
-              <button type="submit" className={styles.submitButton}>
-                {t.joinFormSubmit}
+              {submitStatus && (
+                <div className={`${styles.statusMessage} ${styles[submitStatus.type]}`}>
+                  {submitStatus.message}
+                </div>
+              )}
+              
+              <button 
+                type="submit" 
+                className={styles.submitButton}
+                disabled={isSubmitting}
+              >
+                {isSubmitting 
+                  ? (language === 'ar' ? 'جاري الإرسال...' : 'Submitting...') 
+                  : t.joinFormSubmit}
               </button>
             </form>
           </div>

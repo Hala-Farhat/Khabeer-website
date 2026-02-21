@@ -3,6 +3,7 @@ import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
 import styles from './CTA.module.css'
+import Analytics from '../../utils/analytics'
 // Arabic phone images
 import phoneAr1 from '../../assets/images/Experts/Container (4).png'
 import phoneAr2 from '../../assets/images/Experts/Container (5).png'
@@ -49,7 +50,10 @@ function CTA() {
             <div className={styles.subtitle} data-node-id="4:1137">
               <p>{t.ctaSubtitle}</p>
             </div>
-            <button className={styles.button} data-node-id="4:1138" onClick={() => setIsModalOpen(true)}>
+            <button className={styles.button} data-node-id="4:1138" onClick={() => {
+              setIsModalOpen(true)
+              Analytics.ctaClick('Join Expert CTA')
+            }}>
               <span data-node-id="4:1142">{t.ctaButton}</span>
               <div className={styles.buttonIconWrapper}>
                 <div className={styles.buttonIconContainer}>
@@ -88,7 +92,10 @@ function CTA() {
       
       <JoinExpertModal 
         isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+        onClose={() => {
+          setIsModalOpen(false)
+          Analytics.joinExpertModalClose()
+        }} 
       />
     </section>
   )
