@@ -197,7 +197,7 @@ function JoinExpertForm({ onSuccess }) {
             <h3 className={styles.contactTitle}>{t.joinFormSocial}</h3>
             <div className={styles.socialIcons}>
               <div className={styles.socialItem}>
-                <a href="https://wa.me/966500421548" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink} onClick={() => Analytics.socialClick('WhatsApp')}>
+                <a href="https://wa.me/966543578354" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink} onClick={() => Analytics.socialClick('WhatsApp')}>
                   <img src={whatsappIcon} alt="WhatsApp" />
                 </a>
               </div>

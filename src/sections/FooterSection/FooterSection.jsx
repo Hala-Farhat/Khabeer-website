@@ -99,7 +99,7 @@ function FooterSection() {
                 <img src={instagramIcon} alt="Instagram" />
               </a>
               <a
-                href="https://wa.me/966500421548"
+                href="https://wa.me/966543578354"
                 className={styles.socialIcon}
                 target="_blank"
                 rel="noopener noreferrer"
