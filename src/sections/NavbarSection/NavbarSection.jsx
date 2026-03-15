@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import styles from './NavbarSection.module.css'
 import logoImage from '../../assets/images/footer/Frame 90.png'
-import caseRoundIcon from '../../assets/images/hero/Case Round.svg'
 import globeIcon from '../../assets/images/hero/Globe.png'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
 import JoinExpertModal from '../../components/JoinExpertForm/JoinExpertModal'
 import Analytics from '../../utils/analytics'
 
-function NavbarSection() {
+function NavbarSection({ activeSection }) {
   const { language, setLanguage } = useLanguage()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const t = translations[language]
+
+  // تحديد القسم النشط الحالي (الأولوية للـ prop ثم الـ hash)
+  const currentActive = activeSection || location.hash.substring(1)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,10 +68,10 @@ function NavbarSection() {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const navbarHeight = 126
+      const navbarHeight = 100
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
       const offsetPosition = elementPosition - navbarHeight
-      
+
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
@@ -81,27 +82,25 @@ function NavbarSection() {
   }
 
   const handleNavClick = (e, sectionId) => {
-    e.preventDefault()
     closeMenu()
     Analytics.navClick(sectionId)
-    
-    if (location.pathname === '/') {
-      setTimeout(() => {
-        scrollToSection(sectionId)
-      }, 100)
-    } else {
+
+    if (location.pathname !== '/') {
+      e.preventDefault()
       navigate('/')
       setTimeout(() => {
         scrollToSection(sectionId)
       }, 500)
     }
+    // For same-page, we let the default anchor behavior work with CSS scroll-margin-top
   }
 
   const handleLogoClick = (e) => {
-    e.preventDefault()
     if (location.pathname !== '/') {
+      e.preventDefault()
       navigate('/')
     } else {
+      e.preventDefault()
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
@@ -115,13 +114,37 @@ function NavbarSection() {
           </a>
         </div>
         <div className={styles.menu}>
-        <a href="#about">{t.navAbout}</a>
-          <a href="#features">{t.navFeatures}</a>
-          <a href="#services">{t.navServices}</a>
-          <a href="#experts">{t.navExperts}</a>
+          <a
+            href="#about"
+            onClick={closeMenu}
+            className={currentActive === 'about' ? styles.active : ''}
+          >
+            {t.navAbout}
+          </a>
+          <a
+            href="#features"
+            onClick={closeMenu}
+            className={currentActive === 'features' ? styles.active : ''}
+          >
+            {t.navFeatures}
+          </a>
+          <a
+            href="#services"
+            onClick={closeMenu}
+            className={currentActive === 'services' ? styles.active : ''}
+          >
+            {t.navServices}
+          </a>
+          <a
+            href="#experts-benefits"
+            onClick={(e) => handleNavClick(e, 'experts-benefits')}
+            className={currentActive === 'experts-benefits' ? styles.active : ''}
+          >
+            {t.navExperts}
+          </a>
         </div>
         <div className={styles.buttons}>
-          <button 
+          <button
             className={styles.countryButton}
             onClick={toggleLanguage}
             title={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
@@ -129,19 +152,9 @@ function NavbarSection() {
             <img src={globeIcon} alt="Globe" className={styles.globeIcon} />
             <span>{language === 'ar' ? 'ع' : 'EN'}</span>
           </button>
-          <button 
-            className={styles.joinButton}
-            onClick={() => {
-              setIsModalOpen(true)
-              Analytics.joinExpertModalOpen()
-            }}
-          >
-            <img src={caseRoundIcon} alt="Case Round" className={styles.caseRoundIcon} />
-            <span>{t.joinExpert}</span>
-          </button>
         </div>
         {/* Hamburger Menu Button - Mobile Only */}
-        <button 
+        <button
           className={styles.hamburger}
           onClick={toggleMenu}
           aria-label="Toggle menu"
@@ -153,11 +166,11 @@ function NavbarSection() {
         </button>
       </div>
       {/* Sidebar/Drawer - Mobile Only */}
-      <div 
+      <div
         className={`${styles.sidebar} ${menuOpen ? styles.open : ''}`}
         onClick={closeMenu}
       >
-        <div 
+        <div
           className={styles.sidebarContent}
           onClick={(e) => e.stopPropagation()}
         >
@@ -165,7 +178,7 @@ function NavbarSection() {
             <div className={styles.sidebarLogo}>
               <img src={logoImage} alt="Khabeer Logo" />
             </div>
-            <button 
+            <button
               className={styles.sidebarClose}
               onClick={closeMenu}
               aria-label="Close menu"
@@ -175,13 +188,37 @@ function NavbarSection() {
             </button>
           </div>
           <nav className={styles.sidebarMenu}>
-          <a href="#about">{t.navAbout}</a>
-          <a href="#features">{t.navFeatures}</a>
-          <a href="#services">{t.navServices}</a>
-          <a href="#experts">{t.navExperts}</a>
+            <a
+              href="#about"
+              onClick={closeMenu}
+              className={currentActive === 'about' ? styles.active : ''}
+            >
+              {t.navAbout}
+            </a>
+            <a
+              href="#features"
+              onClick={closeMenu}
+              className={currentActive === 'features' ? styles.active : ''}
+            >
+              {t.navFeatures}
+            </a>
+            <a
+              href="#services"
+              onClick={closeMenu}
+              className={currentActive === 'services' ? styles.active : ''}
+            >
+              {t.navServices}
+            </a>
+            <a
+              href="#experts-benefits"
+              onClick={(e) => handleNavClick(e, 'experts-benefits')}
+              className={currentActive === 'experts-benefits' ? styles.active : ''}
+            >
+              {t.navExperts}
+            </a>
           </nav>
           <div className={styles.sidebarButtons}>
-            <button 
+            <button
               className={styles.sidebarCountryButton}
               onClick={() => {
                 toggleLanguage()
@@ -191,29 +228,9 @@ function NavbarSection() {
               <img src={globeIcon} alt="Globe" className={styles.globeIcon} />
               <span>{language === 'ar' ? 'ع' : 'EN'}</span>
             </button>
-            <button 
-              className={styles.sidebarJoinButton}
-              onClick={() => {
-                closeMenu()
-                setIsModalOpen(true)
-                Analytics.joinExpertModalOpen()
-              }}
-            >
-              <img src={caseRoundIcon} alt="Case Round" className={styles.caseRoundIcon} />
-              <span>{t.joinExpert}</span>
-            </button>
           </div>
         </div>
       </div>
-    
-      {/* Join Expert Modal */}
-      <JoinExpertModal 
-        isOpen={isModalOpen} 
-        onClose={() => {
-          setIsModalOpen(false)
-          Analytics.joinExpertModalClose()
-        }} 
-      />
     </nav>
   )
 }

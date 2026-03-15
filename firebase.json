@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "khabeer-site",
     "public": "dist",
     "ignore": [
       "firebase.json",

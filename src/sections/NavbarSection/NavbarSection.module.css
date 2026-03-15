@@ -120,8 +120,10 @@
   text-decoration: none;
 }
 
-.menu a:hover {
+.menu a:hover,
+.menu a.active {
   color: var(--color-blue-primary);
+  font-weight: var(--font-weight-semibold);
 }
 
 .logo {
@@ -390,9 +392,11 @@
 }
 
 .sidebarMenu a:hover,
-.sidebarMenu a:active {
+.sidebarMenu a:active,
+.sidebarMenu a.active {
   background: rgba(0, 119, 182, 0.08);
   color: var(--color-blue-primary);
+  font-weight: var(--font-weight-semibold);
 }
 
 .sidebarButtons {

@@ -11,7 +11,7 @@ import phoneAr2 from '../../assets/images/Experts/Container (5).png'
 import phoneEn1 from '../../assets/images/Experts/2 (3).png'
 import phoneEn2 from '../../assets/images/Experts/image 5.png'
 import patternImage from '../../assets/images/hero/Globe.png'
-import JoinExpertModal from '../../components/JoinExpertForm/JoinExpertModal'
+import { useNavigate } from 'react-router-dom'
 
 // Arrow icon as inline SVG component
 const ArrowIcon = () => (
@@ -23,7 +23,7 @@ const ArrowIcon = () => (
 function CTA() {
   const { language } = useLanguage()
   const t = translations[language]
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const navigate = useNavigate()
   
   // Select phone images based on language
   const phone1Img = language === 'en' ? phoneEn1 : phoneAr1
@@ -51,8 +51,8 @@ function CTA() {
               <p>{t.ctaSubtitle}</p>
             </div>
             <button className={styles.button} data-node-id="4:1138" onClick={() => {
-              setIsModalOpen(true)
               Analytics.ctaClick('Join Expert CTA')
+              navigate('/join-expert')
             }}>
               <span data-node-id="4:1142">{t.ctaButton}</span>
               <div className={styles.buttonIconWrapper}>
@@ -89,14 +89,6 @@ function CTA() {
           </div>
         </div>
       </div>
-      
-      <JoinExpertModal 
-        isOpen={isModalOpen} 
-        onClose={() => {
-          setIsModalOpen(false)
-          Analytics.joinExpertModalClose()
-        }} 
-      />
     </section>
   )
 }

@@ -13,41 +13,71 @@ import { useLanguage } from '../contexts/LanguageContext'
 function Home() {
   const { language } = useLanguage()
   const location = useLocation()
-  
+  const [activeSection, setActiveSection] = React.useState('')
+
   useEffect(() => {
-    // التعامل مع hash في URL عند تحميل الصفحة
-    if (location.hash) {
-      const sectionId = location.hash.substring(1) // إزالة # من البداية
-      
-      const scrollToSection = () => {
+    // 1. التعامل مع الـ Hash الأصلي عند تحميل الصفحة (Direct Linking Fix)
+    const initialHash = location.hash
+    if (initialHash) {
+      const sectionId = initialHash.substring(1)
+      setActiveSection(sectionId)
+
+      const performInitialScroll = () => {
         const element = document.getElementById(sectionId)
         if (element) {
-          const navbarHeight = 126
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-          const offsetPosition = elementPosition - navbarHeight
-          
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          })
+          // استخدام scrollIntoView بدلاً من scrollTo اليدوي لأنه يحترم scroll-margin-top في CSS
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
           return true
         }
         return false
       }
-      
-      // ننتظر قليلاً للتأكد من أن الصفحة تم تحميلها بالكامل
-      setTimeout(() => {
-        if (!scrollToSection()) {
-          // إذا فشلت، نحاول مرة أخرى
-          setTimeout(() => scrollToSection(), 300)
-        }
-      }, 400)
+
+      // محاولة التمرير عدة مرات للتأكد من تحميل العناصر (خاصة في التبويبات الجديدة)
+      const timers = [
+        setTimeout(performInitialScroll, 100),
+        setTimeout(performInitialScroll, 500),
+        setTimeout(performInitialScroll, 1000)
+      ]
+
+      return () => timers.forEach(clearTimeout)
     }
-  }, [location.hash, location.pathname])
-  
+  }, []) // تنفيذ مرة واحدة فقط عند التحميل
+
+  useEffect(() => {
+    // 2. ScrollSpy: تحديث الرابط أثناء السكرول لجميع الأقسام
+    const sectionIds = ['hero', 'about', 'features', 'services', 'experts-benefits']
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-150px 0px -70% 0px', // يركز على القسم العلوي من الشاشة
+      threshold: 0
+    }
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id
+          setActiveSection(id)
+          // تحديث الـ URL بدون التسبب في إعادة تحميل الصفحة
+          window.history.replaceState(null, '', `/#${id}`)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+    // مراقبة جميع الأقسام المحددة
+    sectionIds.forEach(id => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [location.pathname])
+
   return (
     <div dir={language === 'ar' ? 'rtl' : 'ltr'} className="home-container">
-      <NavbarSection />
+      <NavbarSection activeSection={activeSection} />
       <Hero />
       <AboutApp />
       <Services />

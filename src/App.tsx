@@ -4,6 +4,7 @@ import ReactGA from 'react-ga4'
 import Home from './pages/Home'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsAndConditions from './pages/TermsAndConditions'
+import JoinExpertPage from './pages/JoinExpertPage'
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext'
 
 const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
@@ -33,11 +34,17 @@ function AppContent() {
     }
   }, [location])
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+      <Route path="/join-expert" element={<JoinExpertPage />} />
     </Routes>
   )
 }

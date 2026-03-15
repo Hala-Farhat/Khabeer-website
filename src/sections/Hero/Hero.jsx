@@ -20,7 +20,7 @@ function Hero() {
   const [phonesVisible, setPhonesVisible] = useState(false)
   const contentRef = useRef(null)
   const phonesRef = useRef(null)
-  
+
   // Select images based on language
   const phoneLeftImg = language === 'en' ? container4En : container4
   const phoneRightImg = language === 'en' ? container3En : container3
@@ -59,7 +59,7 @@ function Hero() {
     if (contentRef.current) {
       contentObserver.observe(contentRef.current)
     }
-    
+
     if (phonesRef.current) {
       phonesObserver.observe(phonesRef.current)
     }
@@ -69,9 +69,9 @@ function Hero() {
       phonesObserver.disconnect()
     }
   }, [])
-  
+
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} id="hero">
       <div className={styles.pattern}>
         <img src={patternImage} alt="Pattern" />
       </div>

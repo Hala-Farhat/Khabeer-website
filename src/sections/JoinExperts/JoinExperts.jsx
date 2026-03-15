@@ -12,7 +12,7 @@ import icon4 from '../../assets/images/Experts/Container (3).png'
 function JoinExperts() {
   const { language } = useLanguage()
   const t = translations[language]
-  
+
   const benefits = [
     {
       id: 1,
@@ -50,7 +50,7 @@ function JoinExperts() {
   ]
 
   return (
-    <section className={styles.joinExperts} id="experts">
+    <section className={styles.joinExperts} id="experts-benefits">
       <div className={styles.content}>
         <div className={styles.textContent}>
           <div className={styles.badge}>
@@ -71,7 +71,7 @@ function JoinExperts() {
               rootMargin: '0px 0px -100px 0px',
               once: false
             })
-            
+
             return (
               <div
                 key={benefit.id}
