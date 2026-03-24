@@ -61,10 +61,10 @@ function FooterSection() {
         <div className={styles.links}>
           <h3 className={styles.sectionTitle}>{t.footerQuickLinks}</h3>
           <ul className={styles.linksList}>
-            <a href="#about">{t.navAbout}</a>
-            <a href="#features">{t.navFeatures}</a>
-            <a href="#services">{t.navServices}</a>
-            <a href="#experts-benefits" onClick={(e) => handleFooterNavClick(e, 'experts-benefits')}>{t.navExperts}</a>
+            <a href="#about">{t.footerAbout}</a>
+            <a href="#features">{t.footerFeatures}</a>
+            <a href="#services">{t.footerServices}</a>
+            <a href="#experts-benefits" onClick={(e) => handleFooterNavClick(e, 'experts-benefits')}>{t.footerExperts}</a>
           </ul>
         </div>
         <div className={styles.contact}>
