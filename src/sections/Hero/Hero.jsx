@@ -4,10 +4,12 @@ import container1 from '../../assets/images/hero/Container.png'
 import container2 from '../../assets/images/hero/Container (1).png'
 import container3 from '../../assets/images/hero/Container (2).png'
 import container4 from '../../assets/images/hero/Container (3).png'
+import containerArCustom from '../../assets/images/hero/9.png'
+import containerArAlt from '../../assets/images/hero/8.png'
 // English versions of phone images
 import container2En from '../../assets/images/hero/3.png'
-import container3En from '../../assets/images/hero/1 (3).png'
-import container4En from '../../assets/images/hero/2 (3).png'
+import container3En from '../../assets/images/hero/6.png'
+import container4En from '../../assets/images/hero/3 (2).png'
 import patternImage from '../../assets/images/hero/Globe.png'
 import badgeIcon from '../../assets/images/hero/Icon (5).png'
 import { useLanguage } from '../../contexts/LanguageContext'
@@ -22,8 +24,8 @@ function Hero() {
   const phonesRef = useRef(null)
 
   // Select images based on language
-  const phoneLeftImg = language === 'en' ? container4En : container4
-  const phoneRightImg = language === 'en' ? container3En : container3
+  const phoneLeftImg = language === 'en' ? container4En : containerArAlt
+  const phoneRightImg = language === 'en' ? container3En : containerArCustom
   const phoneCenterImg = language === 'en' ? container2En : container2
 
   useEffect(() => {

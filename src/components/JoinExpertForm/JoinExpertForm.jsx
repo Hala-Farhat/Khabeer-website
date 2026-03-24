@@ -6,11 +6,6 @@ import Analytics from '../../utils/analytics'
 
 const API_BASE_URL = 'https://etkan-api-107080907120.europe-west3.run.app/provider'
 
-// Icons
-import whatsappIcon from '../../assets/images/footer/whatsapp logo.png'
-import instagramIcon from '../../assets/images/footer/instagram.png'
-import snapchatIcon from '../../assets/images/footer/snapchat.png'
-
 function JoinExpertForm({ onSuccess }) {
   const { language } = useLanguage()
   const t = translations[language]
@@ -179,40 +174,6 @@ function JoinExpertForm({ onSuccess }) {
               </svg>
             </div>
           ))}
-        </div>
-        
-        <div className={styles.contactInfo}>
-          <div className={styles.contactSection}>
-            <h3 className={styles.contactTitle}>{t.joinFormEmail}</h3>
-            <div className={styles.contactItem}>
-              <span>contact@faseelah.tech</span>
-              <svg className={styles.contactIcon} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="4" width="20" height="16" rx="3" stroke="#2E536B" strokeWidth="1.5"/>
-                <path d="M2 7L10.165 12.7154C11.2571 13.4283 12.7429 13.4283 13.835 12.7154L22 7" stroke="#2E536B" strokeWidth="1.5"/>
-              </svg>
-            </div>
-          </div>
-          
-          <div className={styles.contactSection}>
-            <h3 className={styles.contactTitle}>{t.joinFormSocial}</h3>
-            <div className={styles.socialIcons}>
-              <div className={styles.socialItem}>
-                <a href="https://wa.me/966543578354" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink} onClick={() => Analytics.socialClick('WhatsApp')}>
-                  <img src={whatsappIcon} alt="WhatsApp" />
-                </a>
-              </div>
-              <div className={styles.socialItem}>
-                <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink} onClick={() => Analytics.socialClick('Instagram')}>
-                  <img src={instagramIcon} alt="Instagram" />
-                </a>
-              </div>
-              <div className={styles.socialItem}>
-                <a href="https://snapchat.com/" target="_blank" rel="noopener noreferrer" className={styles.socialIconLink} onClick={() => Analytics.socialClick('Snapchat')}>
-                  <img src={snapchatIcon} alt="Snapchat" />
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       
