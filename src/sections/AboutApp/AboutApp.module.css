@@ -46,7 +46,7 @@
   transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
               transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-sizing: border-box;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .badge.animate {
@@ -56,7 +56,7 @@
 
 /* LTR adjustments for English */
 :global(.lang-en) .badge {
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 
 .badge span {

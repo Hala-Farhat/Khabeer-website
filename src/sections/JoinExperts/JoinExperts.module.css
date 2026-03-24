@@ -184,7 +184,7 @@
   flex-shrink: 0;
   direction: rtl;
   margin-left: 540px;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 /* LTR adjustments for English */
@@ -193,7 +193,7 @@
   direction: ltr;
   margin-left: 0;
   margin-right: 540px;
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 
 .badge span {

@@ -19,12 +19,12 @@
   background: linear-gradient(159.2459286812006deg, rgba(252, 92, 0, 0.1) 0%, rgba(240, 177, 0, 0.1) 100%);
   width: fit-content;
   height: fit-content;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 /* LTR adjustments for English */
 :global(.lang-en) .badge {
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 
 .badge span {

@@ -16,11 +16,11 @@
   align-items: center;
   gap: 8px;
   background: linear-gradient(158.629deg, rgba(252, 92, 0, 0.1) 0%, rgba(240, 177, 0, 0.1) 100%);
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 :global(.lang-en) .badge {
-  flex-direction: row;
+  flex-direction: row-reverse;
 }
 
 .badge span {
@@ -109,6 +109,14 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+:global(.lang-en) .iconContainer {
+  align-self: flex-start;
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .icon {
