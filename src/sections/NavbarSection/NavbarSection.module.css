@@ -4,12 +4,12 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 40px 80px;
+  padding: 18px 80px;
   transition: padding 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
-  padding: 20px 80px;
+  padding: 10px 80px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -17,11 +17,11 @@
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   border-radius: 80px;
-  padding: 15px 24px;
+  padding: 9px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 86px;
+  min-height: 71px;
   max-width: 1280px;
   margin: 0 auto;
   transition: background 0.3s ease;
@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   gap: 24px;
+  direction: ltr;
 }
 
 .joinButton {
@@ -79,8 +80,8 @@
 }
 
 .globeIcon {
-  width: 16px;
-  height: 16px;
+  width: 24px;
+  height: 24px;
   display: block;
   flex-shrink: 0;
 }
@@ -95,11 +96,6 @@
 /* LTR adjustments for English - button icon order */
 :global(.lang-en) .joinButton,
 :global(.lang-en) .sidebarJoinButton {
-  flex-direction: row-reverse;
-}
-
-:global(.lang-en) .countryButton,
-:global(.lang-en) .sidebarCountryButton {
   flex-direction: row-reverse;
 }
 
@@ -143,16 +139,16 @@
 /* Large Tablets & Small Desktops (1024px - 1440px) */
 @media (min-width: 1024px) and (max-width: 1440px) {
   .navbar {
-    padding: clamp(24px, 1.9vw, 40px) clamp(40px, 5.6vw, 80px);
+    padding: clamp(14px, 1.2vw, 18px) clamp(40px, 5.6vw, 80px);
   }
 
   .navbar.scrolled {
-    padding: clamp(16px, 1.25vw, 20px) clamp(40px, 5.6vw, 80px);
+    padding: clamp(8px, 0.75vw, 12px) clamp(40px, 5.6vw, 80px);
   }
 
   .container {
-    padding: clamp(13px, 1vw, 15px) clamp(20px, 2.5vw, 24px);
-    height: clamp(78px, 6.1vw, 86px);
+    padding: clamp(8px, 0.7vw, 10px) clamp(20px, 2.5vw, 24px);
+    min-height: clamp(64px, 5.2vw, 71px);
     border-radius: clamp(65px, 5.1vw, 80px);
     max-width: clamp(1100px, 86vw, 1280px);
   }
@@ -180,17 +176,16 @@
 /* Tablets (768px - 1024px) - iPad & Similar */
 @media (min-width: 768px) and (max-width: 1024px) {
   .navbar {
-    padding: clamp(16px, 2.1vw, 24px) clamp(24px, 3.1vw, 40px);
+    padding: clamp(12px, 1.5vw, 16px) clamp(24px, 3.1vw, 40px);
   }
 
   .navbar.scrolled {
-    padding: clamp(12px, 1.56vw, 16px) clamp(24px, 3.1vw, 40px);
+    padding: clamp(8px, 1vw, 12px) clamp(24px, 3.1vw, 40px);
   }
 
   .container {
-    padding: clamp(12px, 1.56vw, 14px) clamp(18px, 2.34vw, 22px);
-    height: clamp(72px, 9.4vw, 80px);
-    min-height: clamp(72px, 9.4vw, 80px);
+    padding: clamp(8px, 1.1vw, 11px) clamp(18px, 2.34vw, 22px);
+    min-height: clamp(66px, 8.1vw, 74px);
     border-radius: clamp(55px, 7.2vw, 70px);
     max-width: 100%;
   }

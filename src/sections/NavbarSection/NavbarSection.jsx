@@ -3,9 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import styles from './NavbarSection.module.css'
 import logoImage from '../../assets/images/footer/Frame 90.png'
 import globeIcon from '../../assets/images/hero/Globe.png'
+import caseRoundIcon from '../../assets/images/hero/Case Round.svg'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { translations } from '../../i18n/translations'
-import JoinExpertModal from '../../components/JoinExpertForm/JoinExpertModal'
 import Analytics from '../../utils/analytics'
 
 function NavbarSection({ activeSection }) {
@@ -105,6 +105,12 @@ function NavbarSection({ activeSection }) {
     }
   }
 
+  const handleJoinExpertClick = () => {
+    Analytics.navClick('join-expert')
+    navigate('/join-expert')
+    closeMenu()
+  }
+
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
@@ -116,21 +122,21 @@ function NavbarSection({ activeSection }) {
         <div className={styles.menu}>
           <a
             href="#about"
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, 'about')}
             className={currentActive === 'about' ? styles.active : ''}
           >
             {t.navAbout}
           </a>
           <a
             href="#features"
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, 'features')}
             className={currentActive === 'features' ? styles.active : ''}
           >
             {t.navFeatures}
           </a>
           <a
             href="#services"
-            onClick={closeMenu}
+            onClick={(e) => handleNavClick(e, 'services')}
             className={currentActive === 'services' ? styles.active : ''}
           >
             {t.navServices}
@@ -144,13 +150,17 @@ function NavbarSection({ activeSection }) {
           </a>
         </div>
         <div className={styles.buttons}>
+          <button className={styles.joinButton} onClick={handleJoinExpertClick}>
+            <span>{t.joinExpert}</span>
+            <img src={caseRoundIcon} alt="" className={styles.caseRoundIcon} aria-hidden="true" />
+          </button>
           <button
             className={styles.countryButton}
             onClick={toggleLanguage}
             title={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
           >
-            <img src={globeIcon} alt="Globe" className={styles.globeIcon} />
             <span>{language === 'ar' ? 'ع' : 'EN'}</span>
+            <img src={globeIcon} alt="Globe" className={styles.globeIcon} />
           </button>
         </div>
         {/* Hamburger Menu Button - Mobile Only */}
@@ -190,21 +200,21 @@ function NavbarSection({ activeSection }) {
           <nav className={styles.sidebarMenu}>
             <a
               href="#about"
-              onClick={closeMenu}
+              onClick={(e) => handleNavClick(e, 'about')}
               className={currentActive === 'about' ? styles.active : ''}
             >
               {t.navAbout}
             </a>
             <a
               href="#features"
-              onClick={closeMenu}
+              onClick={(e) => handleNavClick(e, 'features')}
               className={currentActive === 'features' ? styles.active : ''}
             >
               {t.navFeatures}
             </a>
             <a
               href="#services"
-              onClick={closeMenu}
+              onClick={(e) => handleNavClick(e, 'services')}
               className={currentActive === 'services' ? styles.active : ''}
             >
               {t.navServices}
@@ -219,14 +229,21 @@ function NavbarSection({ activeSection }) {
           </nav>
           <div className={styles.sidebarButtons}>
             <button
+              className={styles.sidebarJoinButton}
+              onClick={handleJoinExpertClick}
+            >
+              <span>{t.joinExpert}</span>
+              <img src={caseRoundIcon} alt="" className={styles.caseRoundIcon} aria-hidden="true" />
+            </button>
+            <button
               className={styles.sidebarCountryButton}
               onClick={() => {
                 toggleLanguage()
                 closeMenu()
               }}
             >
-              <img src={globeIcon} alt="Globe" className={styles.globeIcon} />
               <span>{language === 'ar' ? 'ع' : 'EN'}</span>
+              <img src={globeIcon} alt="Globe" className={styles.globeIcon} />
             </button>
           </div>
         </div>
