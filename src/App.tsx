@@ -20,7 +20,8 @@ function AppContent() {
   useEffect(() => {
     document.documentElement.lang = language
     document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr'
-    
+    document.title = language === 'ar' ? 'خبير' : 'Khabeer'
+
     if (language === 'en') {
       document.documentElement.classList.add('lang-en')
     } else {

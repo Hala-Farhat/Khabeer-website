@@ -51,10 +51,10 @@
 .badge {
   border: 0.556px solid rgba(255, 255, 255, 0.2);
   border-radius: 18641400px;
-  padding: 8px;
+  padding: 10px 14px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   background: linear-gradient(171.18deg, rgba(255, 105, 0, 0.1) 0%, rgba(240, 177, 0, 0.1) 100%);
   width: fit-content;
   height: fit-content;
@@ -79,8 +79,8 @@
 .badge span {
   font-family: var(--font-family);
   font-weight: var(--font-weight-regular);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 22px;
   color: #f7941d;
   text-align: center;
   letter-spacing: -0.1504px;
@@ -89,8 +89,8 @@
 }
 
 .badgeIcon {
-  width: 20px;
-  height: 20px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -549,18 +549,18 @@
   }
 
   .badge {
-    padding: 6px 10px;
-    gap: 6px;
+    padding: 8px 14px;
+    gap: 10px;
   }
 
   .badge span {
-    font-size: 13px;
+    font-size: 14px;
     padding: 0 6px;
   }
 
   .badgeIcon {
-    width: 18px;
-    height: 18px;
+    width: 30px;
+    height: 30px;
   }
 
   /* إخفاء جميع الجوالات نهائياً على الموبايل */
